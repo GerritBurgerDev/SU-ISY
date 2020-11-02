@@ -20,7 +20,7 @@
       </v-list>
 
       <v-list v-else dense flat>
-        <v-list-item href="http://127.0.0.1:5000/loginUser">
+        <v-list-item href="http://isy-be.herokuapp.com/loginUser">
           <v-list-item-icon>
             <v-icon>fas fa-sign-in-alt</v-icon>
           </v-list-item-icon>
@@ -76,7 +76,7 @@ export default {
     logout() {
       sessionStorage.removeItem("user");
       this.loggedIn = false;
-      window.location.href = "http://127.0.0.1:5000/logOutUser";
+      window.location.href = "http://isy-be.herokuapp.com/logOutUser";
     }
   },
   mounted() {
