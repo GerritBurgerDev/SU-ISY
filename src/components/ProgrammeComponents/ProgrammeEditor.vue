@@ -2256,7 +2256,7 @@ export default {
             this.pceEditModules = {};
         },
         saveChanges() {
-            const path = "http://isy-be.herokuapp.com/saveProgramme";
+            const path = "https://isy-be.herokuapp.com/saveProgramme";
 
             axios
                 .post(path, {
@@ -2283,7 +2283,7 @@ export default {
                 });
         },
         addProgramme() {
-            const path = "http://isy-be.herokuapp.com/addProgramme";
+            const path = "https://isy-be.herokuapp.com/addProgramme";
 
             axios
                 .post(path, {

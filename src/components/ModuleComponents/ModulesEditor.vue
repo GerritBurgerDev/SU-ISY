@@ -499,7 +499,7 @@ export default {
             }
         },
         saveChanges() {
-            const path = "http://isy-be.herokuapp.com/saveModule";
+            const path = "https://isy-be.herokuapp.com/saveModule";
 
             axios
                 .post(path, {
@@ -522,7 +522,7 @@ export default {
                 });
         },
         addModule() {
-            const path = "http://isy-be.herokuapp.com/addModule";
+            const path = "https://isy-be.herokuapp.com/addModule";
 
             axios
                 .post(path, {
@@ -545,7 +545,7 @@ export default {
                 });
         },
         getModules() {
-            const path = "http://isy-be.herokuapp.com/getModules";
+            const path = "https://isy-be.herokuapp.com/getModules";
             axios
                 .get(path)
                 .then(res => {

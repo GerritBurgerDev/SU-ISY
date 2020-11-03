@@ -1032,7 +1032,7 @@ export default {
             });
         },
         removeProgramme() {
-            const path = "http://isy-be.herokuapp.com/removeProgramme";
+            const path = "https://isy-be.herokuapp.com/removeProgramme";
 
             axios
                 .post(path, {

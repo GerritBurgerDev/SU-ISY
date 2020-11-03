@@ -206,7 +206,7 @@ export default {
   },
   methods: {
     getGeneralInfo() {
-      const path = "http://isy-be.herokuapp.com/getGeneralInfo";
+      const path = "https://isy-be.herokuapp.com/getGeneralInfo";
       axios
         .get(path)
         .then(res => {
@@ -233,7 +233,7 @@ export default {
       return JSON.parse(JSON.stringify(obj));
     },
     saveChanges() {
-      const path = "http://isy-be.herokuapp.com/saveGeneralInfo";
+      const path = "https://isy-be.herokuapp.com/saveGeneralInfo";
       axios
         .post(path, { general_info: this.info })
         .then(res => {
