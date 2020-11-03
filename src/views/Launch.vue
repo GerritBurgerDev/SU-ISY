@@ -66,10 +66,10 @@
             <hr class="card-hr" />
             <div class="card-programmes-buttons">
               <div class="my-2">
-                <v-btn class="card-button" @click="showAddProgramme()">Add a programme</v-btn>
+                <v-btn v-if="this.loggedIn && this.userData['admin']" class="card-button" @click="showAddProgramme()">Add a programme</v-btn>
               </div>
               <div class="my-3">
-                <v-btn class="card-button" @click="showAddModule()">Add a module</v-btn>
+                <v-btn v-if="this.loggedIn && this.userData['admin']" class="card-button" @click="showAddModule()">Add a module</v-btn>
               </div>
             </div>
             <div class="card-text">
