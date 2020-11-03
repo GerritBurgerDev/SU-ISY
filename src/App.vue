@@ -102,7 +102,7 @@ export default {
 
     methods: {
         getModules() {
-            const path = "https://isy-be.herokuapp.com/getModules";
+            const path = "https://isy-be.herokuapp.com/getModules2";
             axios
                 .get(path)
                 .then(res => {
