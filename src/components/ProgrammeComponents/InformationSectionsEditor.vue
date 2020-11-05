@@ -121,7 +121,7 @@ export default {
 
   mounted() {
     EventBus.$on("reloadISE", res => {
-      console.log(res);
+      this.temp = res;
       this.$forceUpdate();
     });
   }

@@ -457,7 +457,7 @@ export default {
             let count = 0;
 
             for (let i in array) {
-                console.log(i);
+                this.temp = i;
                 count++;
             }
 

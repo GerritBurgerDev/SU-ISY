@@ -257,7 +257,7 @@ export default {
 
   mounted() {
     EventBus.$on("reloadUME", res => {
-      console.log(res);
+      this.temp = res;
       this.$forceUpdate();
     });
   }

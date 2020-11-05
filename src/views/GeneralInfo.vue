@@ -191,12 +191,12 @@ export default {
       model: true,
       info: {},
       tabs: [
+        "Examination, Promotion and Faculty provisions",
         "History",
         "Faculty Contact Details",
         "University Contact Details",
         "Language",
         "Qualifications",
-        "Examination, Promotion and Faculty provisions",
         "Dean's Examination"
       ],
       backup: {},
@@ -237,7 +237,7 @@ export default {
       axios
         .post(path, { general_info: this.info })
         .then(res => {
-          console.log(res.data.status);
+          this.temp = res.data.status
           this.getGeneralInfo();
         })
         .catch(error => {
