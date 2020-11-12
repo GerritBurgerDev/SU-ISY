@@ -178,11 +178,7 @@ export default {
                 });
         },
         parseURLParams() {
-            const urlParams = new URLSearchParams(window.location.search);
-
-            const userId = urlParams.get("id");
-
-            return userId;
+            return this.$route.query.id;
         },
     },
     watch: {
@@ -190,7 +186,7 @@ export default {
             try {
                 const id = this.parseURLParams();
 
-                if (id !== null) {
+                if (id !== undefined) {
                     this.getUserData(id);
                     this.$router.replace("/home");
                 }
@@ -208,7 +204,7 @@ export default {
         try {
             const id = this.parseURLParams();
 
-            if (id !== null) {
+            if (id !== undefined) {
                 this.getUserData(id);
                 this.$router.replace("/home");
             }
