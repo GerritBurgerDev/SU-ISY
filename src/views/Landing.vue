@@ -20,46 +20,65 @@
         </v-row>
 
         <!-- CHOOSE USER TYPE -->
-        <v-row class="d-none d-xl-block d-md-block">
+        <v-row class="landing-cards d-none d-xl-block d-md-block">
             <v-row>
                 <v-col>
-                    <v-card elevation="3">
-                        <v-img
-                            src="https://picsum.photos/350/165?random"
-                            height="125"
-                            class="grey darken-4"
-                        ></v-img>
-                        <v-card-title class="my-2" justify-center>
-                            <v-btn @click.prevent="pickUndergrad"
+                    <v-card elevation="3" class="landing-card text-center pt-5 pb-5">
+                        <h1 class="pt-2">Prospective Student</h1>
+                        <hr class="mr-10 ml-10" />
+                        <v-icon size="250" color="blue lighten-2"
+                            >person</v-icon
+                        >
+                        <v-card-title class="justify-center">
+                            <v-btn
+                                class="white--text mr-2"
+                                color="red darken-2"
+                                @click.prevent="goToLaunch('prospective', true)"
                                 >Prospective Student</v-btn
                             >
                         </v-card-title>
                     </v-card>
                 </v-col>
                 <v-col>
-                    <v-card elevation="3">
-                        <v-img
-                            src="https://picsum.photos/350/165?random"
-                            height="125"
-                            class="grey darken-4"
-                        ></v-img>
-                        <v-card-title class="my-2" justify-center>
-                            <v-btn @click.prevent="pickUndergrad"
+                    <v-card elevation="3" class="landing-card text-center pt-5 pb-5">
+                        <h1 class="pt-2">Current Student</h1>
+                        <hr class="mr-10 ml-10" />
+                        <v-icon size="250" color="red darken-2">person</v-icon>
+                        <v-card-title class="justify-center">
+                            <v-btn
+                                class="white--text mr-2"
+                                color="red darken-2"
+                                @click.prevent="goToLaunch('student', false)"
                                 >Current Student</v-btn
+                            >
+                            <v-btn
+                                class="white--text ml-2"
+                                color="red darken-2"
+                                @click.prevent="goToLaunch('student', true)"
+                                >Direct Login</v-btn
                             >
                         </v-card-title>
                     </v-card>
                 </v-col>
                 <v-col>
-                    <v-card elevation="3">
-                        <v-img
-                            src="https://picsum.photos/350/165?random"
-                            height="125"
-                            class="grey darken-4"
-                        ></v-img>
-                        <v-card-title class="my-2" justify-center>
-                            <v-btn @click.prevent="pickUndergrad"
+                    <v-card elevation="3" class="landing-card text-center pt-5 pb-5">
+                        <h1 class="pt-2">Staff Member</h1>
+                        <hr class="mr-10 ml-10" />
+                        <v-icon size="250" color="yellow darken-2"
+                            >person</v-icon
+                        >
+                        <v-card-title class="justify-center">
+                            <v-btn
+                                class="white--text mr-2"
+                                color="red darken-2"
+                                @click.prevent="goToLaunch('staff', false)"
                                 >Staff Member</v-btn
+                            >
+                            <v-btn
+                                class="white--text ml-2"
+                                color="red darken-2"
+                                @click.prevent="goToLaunch('staff', true)"
+                                >Direct Login</v-btn
                             >
                         </v-card-title>
                     </v-card>
@@ -69,48 +88,68 @@
 
         <v-row>
             <v-carousel
-                class="options-small d-none d-flex d-sm-flex d-md-none"
-                show-arrows-on-hover
+                class="landing-cards d-none d-flex d-sm-flex d-md-none"
+                light
+                :show-arrows="false"
                 hide-delimiters
             >
                 <v-carousel-item>
-                    <v-card elevation="3">
-                        <v-img
-                            src="https://picsum.photos/350/165?random"
-                            height="125"
-                            class="grey darken-4"
-                        ></v-img>
-                        <v-card-title class="my-2" justify-center>
-                            <v-btn @click.prevent="pickUndergrad"
+                    <v-card elevation="5" class="landing-card text-center">
+                        <h1 class="pt-2">Prospective Student</h1>
+                        <hr class="mr-10 ml-10" />
+                        <v-icon size="250" color="blue lighten-2"
+                            >person</v-icon
+                        >
+                        <v-card-title class="justify-center">
+                            <v-btn
+                                class="white--text mr-2"
+                                color="red darken-2"
+                                @click.prevent="goToLaunch('prospective', true)"
                                 >Prospective Student</v-btn
                             >
                         </v-card-title>
                     </v-card>
                 </v-carousel-item>
                 <v-carousel-item>
-                    <v-card elevation="3">
-                        <v-img
-                            src="https://picsum.photos/350/165?random"
-                            height="125"
-                            class="grey darken-4"
-                        ></v-img>
-                        <v-card-title class="my-2" justify-center>
-                            <v-btn @click.prevent="pickUndergrad"
+                    <v-card elevation="5" class="landing-card text-center">
+                        <h1 class="pt-2">Current Student</h1>
+                        <hr class="mr-10 ml-10" />
+                        <v-icon size="250" color="red darken-2">person</v-icon>
+                        <v-card-title class="justify-center">
+                            <v-btn
+                                class="white--text mr-2"
+                                color="red darken-2"
+                                @click.prevent="goToLaunch('student', false)"
                                 >Current Student</v-btn
+                            >
+                            <v-btn
+                                class="white--text mr-3"
+                                color="red darken-2"
+                                @click.prevent="goToLaunch('student', true)"
+                                >Direct Login</v-btn
                             >
                         </v-card-title>
                     </v-card>
                 </v-carousel-item>
                 <v-carousel-item>
-                    <v-card elevation="3">
-                        <v-img
-                            src="https://picsum.photos/350/165?random"
-                            height="125"
-                            class="grey darken-4"
-                        ></v-img>
-                        <v-card-title class="my-2" justify-center>
-                            <v-btn @click.prevent="pickUndergrad"
+                    <v-card elevation="5" class="landing-card text-center">
+                        <h1 class="pt-2">Staff Member</h1>
+                        <hr class="mr-10 ml-10" />
+                        <v-icon size="250" color="yellow darken-2"
+                            >person</v-icon
+                        >
+                        <v-card-title class="justify-center">
+                            <v-btn
+                                class="white--text mr-2"
+                                color="red darken-2"
+                                @click.prevent="goToLaunch('staff', false)"
                                 >Staff Member</v-btn
+                            >
+                            <v-btn
+                                class="white--text mr-3"
+                                color="red darken-2"
+                                @click.prevent="goToLaunch('staff', true)"
+                                >Direct Login</v-btn
                             >
                         </v-card-title>
                     </v-card>
@@ -133,11 +172,20 @@
         overflow-x: hidden;
         overflow-y: scroll;
         -ms-overflow-style: none;
-        /*background-color: rgba(255, 255, 255, 0.9);*/
+        background-color: rgba(250, 250, 250, 0.95);
     }
 
     .launch::-webkit-scrollbar {
         display: none;
+    }
+
+    .landing-cards {
+        position: relative;
+        top: 22%;
+    }
+
+    .landing-card {
+        background-color: rgba(248, 248, 248, 0.5);
     }
 
     .top {
@@ -210,6 +258,15 @@
         width: 80%;
     }
 
+    .landing-cards {
+        position: absolute;
+        top: 20%;
+    }
+
+    .landing-card {
+        width: 100vw;
+    }
+
     .pad-below {
         padding-bottom: 40px !important;
     }
@@ -239,11 +296,6 @@
         top: 30px;
         width: 400px;
         height: 430px;
-        background-color: rgba(255, 255, 255, 0.7);
-    }
-
-    .options-small-card {
-        color: black;
     }
 }
 
@@ -313,43 +365,52 @@
 
 <script>
 import { EventBus } from "@/event-bus.js";
+import axios from "axios";
 
 export default {
     name: "Landing",
 
     data() {
-        return {
-            loggedIn: false,
-        };
+        return {};
     },
     methods: {
-        pickModule() {
-            EventBus.$emit("showPickModule", true);
+        getModules() {
+            const path = "https://isy-be.herokuapp.com/getModules";
+            axios
+                .get(path)
+                .then((res) => {
+                    EventBus.$emit("getModules", res.data.departments);
+                    EventBus.$emit("updateSearchBar", res.data.departments);
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
         },
-        pickUndergrad() {
-            EventBus.$emit("showUndergrad", true);
-        },
-        pickPostgrad() {
-            EventBus.$emit("showPostgrad", true);
+        goToLaunch: function (userType, directLogin) {
+            this.getModules();
+
+            if (!directLogin) {
+                window.location.href = "https://isy-be.herokuapp.com/loginUser";
+            } else {
+                if (userType === "prospective") {
+                    const data = { user: {}, logged: false };
+
+                    EventBus.$emit("sendIsLoggedIn", data);
+                    EventBus.$emit("sendShowBar", true);
+
+                    this.$router.replace("/home");
+                } else if (userType === "student") {
+                    this.$router.replace(
+                        "/?id=gAAAAABfoDttjROgmpuE9ldZhzoFFJpfVL3ngwHmgKahGqfO5m59YeAkJbXWNiBmeqtzE7abwXYlMhBu8PcLc5hm0leoa-e7fw=="
+                    );
+                } else {
+                    this.$router.replace(
+                        "/?id=gAAAAABfoASgvcRvdVsXIoBOL-s7S70bcK2lo6FYsYQj3J7aXa6oWfjZSotYvQRR2j6tEUZ_jkeX9NURyhZTcLTn_ZR9P0-4Sw=="
+                    );
+                }
+            }
         },
     },
-    mounted() {
-        if (sessionStorage.user) {
-            this.userData = JSON.parse(sessionStorage.getItem("user"));
-            this.loggedIn = true;
-        } else {
-            this.loggedIn = false;
-        }
-
-        if (this.loggedIn) {
-            EventBus.$on("sendIsLoggedIn", (res) => {
-                const data = res;
-                this.userData = data.user;
-                this.loggedIn = data.logged;
-            });
-
-            this.$router.replace("/home");
-        }
-    },
+    mounted() {},
 };
 </script>

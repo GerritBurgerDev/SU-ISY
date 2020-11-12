@@ -16,7 +16,7 @@
             </v-toolbar-title>
 
             <v-spacer />
-            <v-menu open-on-click bottom :offset-y="offset">
+            <v-menu v-if="this.showBar" open-on-click bottom :offset-y="offset">
                 <template v-slot:activator="{ on }">
                     <v-btn v-on="on" icon class="search-btn">
                         <v-icon class="search-icon" style="color: white"
@@ -46,6 +46,7 @@
             </v-menu>
 
             <v-autocomplete
+                v-if="this.showBar"
                 v-model="searchVal"
                 :items="this.searchBarItems"
                 clearable
@@ -71,7 +72,13 @@
                     </template>
                 </template>
             </v-autocomplete>
-            <v-btn icon color="white" class="search-btn" @click="searchAction">
+            <v-btn
+                v-if="this.showBar"
+                icon
+                color="white"
+                class="search-btn"
+                @click="searchAction"
+            >
                 <v-icon class="search-icon">search</v-icon>
             </v-btn>
             <v-spacer />
@@ -130,7 +137,7 @@ export default {
     name: "NavBar",
     components: {
         navdrawer,
-        settings
+        settings,
     },
     data() {
         return {
@@ -138,12 +145,13 @@ export default {
             searchVal: null,
             searchItems: [],
             searchBarItems: [],
+            showBar: false,
             test: [],
             offset: true,
             filterBy: "None",
             modules: {},
             undergrad: {},
-            postgrad: {}
+            postgrad: {},
         };
     },
     methods: {
@@ -155,7 +163,7 @@ export default {
             for (const item in this.searchItems) {
                 if (item.includes("header")) {
                     this.searchBarItems.push({
-                        header: this.searchItems[item]
+                        header: this.searchItems[item],
                     });
                 } else if (item.includes("divider")) {
                     this.searchBarItems.push({ divider: true });
@@ -191,10 +199,10 @@ export default {
 
             axios
                 .post(path, payload)
-                .then(res => {
+                .then((res) => {
                     const result = {
                         type: "postgrad",
-                        data: res.data.programme
+                        data: res.data.programme,
                     };
 
                     sessionStorage.setItem(
@@ -205,7 +213,7 @@ export default {
                     EventBus.$emit("sendProgramme", result);
                     EventBus.$emit("updateProgramme", result);
                 })
-                .catch(error => {
+                .catch((error) => {
                     console.error(error);
                 });
 
@@ -229,7 +237,7 @@ export default {
 
             axios
                 .post(path, payload)
-                .then(res => {
+                .then((res) => {
                     this.get_module = res.data.module;
 
                     sessionStorage.setItem(
@@ -239,7 +247,7 @@ export default {
                     EventBus.$emit("sendModule", this.get_module);
                     EventBus.$emit("updateModule", this.get_module);
                 })
-                .catch(error => {
+                .catch((error) => {
                     console.error(error);
                 });
 
@@ -259,10 +267,10 @@ export default {
 
             axios
                 .post(path, payload)
-                .then(res => {
+                .then((res) => {
                     const result = {
                         type: "undergrad",
-                        data: res.data.programme
+                        data: res.data.programme,
                     };
 
                     sessionStorage.setItem(
@@ -273,7 +281,7 @@ export default {
                     EventBus.$emit("sendProgramme", result);
                     EventBus.$emit("updateProgramme", result);
                 })
-                .catch(error => {
+                .catch((error) => {
                     console.error(error);
                 });
 
@@ -294,7 +302,7 @@ export default {
             this.filterBy = type;
             this.searchBarItems = this.filteredData();
         },
-        filteredData: function() {
+        filteredData: function () {
             const temp = [];
 
             if (this.filterBy === "module") {
@@ -333,7 +341,7 @@ export default {
                 for (const index in this.modules[department]) {
                     items[this.modules[department][index].name] = {
                         key: this.modules[department][index]._key,
-                        type: "module"
+                        type: "module",
                     };
                 }
             }
@@ -349,7 +357,7 @@ export default {
                         const temp = programme + " " + stream;
                         items[stream] = {
                             key: temp.replace(/\s/g, "_"),
-                            type: "undergrad"
+                            type: "undergrad",
                         };
                     } else {
                         for (const option in this.undergrad[programme][
@@ -369,7 +377,7 @@ export default {
                                 ]
                             ] = {
                                 key: temp.replace(/\s/g, "_"),
-                                type: "undergrad"
+                                type: "undergrad",
                             };
                         }
                     }
@@ -384,7 +392,7 @@ export default {
                         const temp = programme + " " + degree;
                         items[degree] = {
                             key: temp.replace(/\s/g, "_"),
-                            type: "undergrad"
+                            type: "undergrad",
                         };
                     } else {
                         for (const stream in this.undergrad[programme][
@@ -399,7 +407,7 @@ export default {
                                     programme + " " + degree + " " + stream;
                                 items[stream] = {
                                     key: temp.replace(/\s/g, "_"),
-                                    type: "undergrad"
+                                    type: "undergrad",
                                 };
                             } else {
                                 for (const option in this.undergrad[programme][
@@ -415,7 +423,7 @@ export default {
                                         option;
                                     items[option] = {
                                         key: temp.replace(/\s/g, "_"),
-                                        type: "undergrad"
+                                        type: "undergrad",
                                     };
                                 }
                             }
@@ -437,7 +445,7 @@ export default {
                                     /\s/g,
                                     "_"
                                 ),
-                                type: "postgrad"
+                                type: "postgrad",
                             };
                         }
                     }
@@ -445,13 +453,13 @@ export default {
             }
 
             this.searchItems = items;
-        }
+        },
     },
     created() {
         if (sessionStorage.modules) {
             this.modules = JSON.parse(sessionStorage.getItem("modules"));
         } else {
-            EventBus.$on("getModules", res => {
+            EventBus.$on("getModules", (res) => {
                 this.modules = res;
             });
         }
@@ -461,7 +469,7 @@ export default {
                 sessionStorage.getItem("undergradProgrammes")
             );
         } else {
-            EventBus.$on("getUP", res => {
+            EventBus.$on("getUP", (res) => {
                 this.undergrad = res;
             });
         }
@@ -471,13 +479,13 @@ export default {
                 sessionStorage.getItem("postgradProgrammes")
             );
         } else {
-            EventBus.$on("getPP", res => {
+            EventBus.$on("getPP", (res) => {
                 this.postgrad = res;
             });
         }
     },
     mounted() {
-        EventBus.$on("updateDrawer", res => {
+        EventBus.$on("updateDrawer", (res) => {
             this.drawer = res;
         });
 
@@ -485,13 +493,22 @@ export default {
 
         this.getSearchBarItems();
 
-        EventBus.$on("updateSearchBar", res => {
+        EventBus.$on("updateSearchBar", (res) => {
             this.modules = res;
 
             this.getSearchData();
             this.getSearchBarItems();
         });
+
+        if (sessionStorage.showBar) {
+            this.showBar = true;
+        }
+
+        EventBus.$on("sendShowBar", (res) => {
+            sessionStorage.setItem("showBar", JSON.stringify("true"));
+            this.showBar = res;
+        });
     },
-    computed: {}
+    computed: {},
 };
 </script>

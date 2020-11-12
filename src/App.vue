@@ -96,7 +96,7 @@ export default {
             postgrad: {},
             user: {},
             loggedIn: false,
-            searchItems: {}
+            searchItems: {},
         };
     },
 
@@ -105,7 +105,7 @@ export default {
             const path = "https://isy-be.herokuapp.com/getModules";
             axios
                 .get(path)
-                .then(res => {
+                .then((res) => {
                     this.modules = res.data.departments;
 
                     if (!sessionStorage.modules) {
@@ -117,7 +117,7 @@ export default {
 
                     EventBus.$emit("getModules", this.modules);
                 })
-                .catch(error => {
+                .catch((error) => {
                     console.error(error);
                 });
         },
@@ -125,7 +125,7 @@ export default {
             const path = "https://isy-be.herokuapp.com/getUPs";
             axios
                 .get(path)
-                .then(res => {
+                .then((res) => {
                     this.undergrad = res.data.undergrad;
 
                     if (!sessionStorage.undergradProgrammes) {
@@ -137,14 +137,14 @@ export default {
 
                     EventBus.$emit("getUP", this.undergrad);
                 })
-                .catch(error => {
+                .catch((error) => {
                     console.error(error);
                 });
 
             const path2 = "https://isy-be.herokuapp.com/getPPs";
             axios
                 .get(path2)
-                .then(res => {
+                .then((res) => {
                     this.postgrad = res.data.postgrad;
 
                     if (!sessionStorage.postgradProgrammes) {
@@ -156,7 +156,7 @@ export default {
 
                     EventBus.$emit("getPP", this.postgrad);
                 })
-                .catch(error => {
+                .catch((error) => {
                     console.error(error);
                 });
         },
@@ -164,15 +164,16 @@ export default {
             const path = "https://isy-be.herokuapp.com/getUser";
             axios
                 .post(path, { id: userId })
-                .then(res => {
+                .then((res) => {
                     this.user = res.data.user;
                     sessionStorage.setItem("user", JSON.stringify(this.user));
 
                     this.loggedIn = true;
                     const data = { user: this.user, logged: this.loggedIn };
                     EventBus.$emit("sendIsLoggedIn", data);
+                    EventBus.$emit("sendShowBar", true);
                 })
-                .catch(error => {
+                .catch((error) => {
                     console.error(error);
                 });
         },
@@ -182,7 +183,22 @@ export default {
             const userId = urlParams.get("id");
 
             return userId;
-        }
+        },
+    },
+    watch: {
+        $route(to, from) {
+            try {
+                const id = this.parseURLParams();
+
+                if (id !== null) {
+                    this.getUserData(id);
+                    this.$router.replace("/home");
+                }
+            } catch (e) {
+                console.log(to + from);
+                return;
+            }
+        },
     },
     created() {
         this.getModules();
@@ -194,14 +210,13 @@ export default {
 
             if (id !== null) {
                 this.getUserData(id);
-                this.$router.replace("/");
+                this.$router.replace("/home");
             }
         } catch (e) {
             return;
         }
     },
     mounted() {
-        // this.$vuetify.theme.dark = true;
         this.$vuetify.theme.dark = false;
 
         if (sessionStorage.user) {
@@ -210,6 +225,6 @@ export default {
         } else {
             this.loggedIn = false;
         }
-    }
+    },
 };
 </script>
