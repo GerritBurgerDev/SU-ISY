@@ -5,12 +5,18 @@ import Module from "../views/Module";
 import Programme from "../views/Programme";
 import CCD from "../views/ContinueCurrentDegree";
 import Launch from "../views/Launch.vue";
+import Landing from "../views/Landing.vue";
 
 Vue.use(VueRouter);
 
 const routes = [
   {
     path: "/",
+    name: "Landing",
+    component: Landing
+  },
+  {
+    path: "/home",
     name: "Launch",
     component: Launch
   },
