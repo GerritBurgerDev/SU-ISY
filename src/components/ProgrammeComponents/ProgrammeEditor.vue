@@ -1862,7 +1862,7 @@ export default {
             EventBus.$emit("reloadAE", true);
         },
         getAdmissionRequirements() {
-            const path = "http://127.0.0.1:5000/getAdmissionRequirements";
+            const path = "https://isy-be.herokuapp.com/getAdmissionRequirements";
             axios
                 .post(path, { type: this.type, key: this.programme["_key"] })
                 .then(res => {
@@ -3191,7 +3191,7 @@ export default {
             this.resetAEVariables();
         },
         saveChanges() {
-            const path = "http://127.0.0.1:5000/saveProgramme";
+            const path = "https://isy-be.herokuapp.com/saveProgramme";
 
             axios
                 .post(path, {
@@ -3219,7 +3219,7 @@ export default {
                 });
         },
         addProgramme() {
-            const path = "http://127.0.0.1:5000/addProgramme";
+            const path = "https://isy-be.herokuapp.com/addProgramme";
 
             axios
                 .post(path, {

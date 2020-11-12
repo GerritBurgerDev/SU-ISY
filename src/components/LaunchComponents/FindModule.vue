@@ -82,7 +82,7 @@ export default {
 
       const getKey = name.replace(" ", "_");
 
-      const path = "http://127.0.0.1:5000/getModule";
+      const path = "https://isy-be.herokuapp.com/getModule";
 
       const payload = { key: getKey };
 

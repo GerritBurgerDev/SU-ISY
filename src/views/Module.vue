@@ -276,7 +276,7 @@ export default {
 
     methods: {
         getModules() {
-            const path = "http://127.0.0.1:5000/getModules";
+            const path = "https://isy-be.herokuapp.com/getModules";
             axios
                 .get(path)
                 .then(res => {
@@ -295,7 +295,7 @@ export default {
             });
         },
         confirmRemoveModule() {
-            const path = "http://127.0.0.1:5000/removeModule";
+            const path = "https://isy-be.herokuapp.com/removeModule";
 
             axios
                 .post(path, {

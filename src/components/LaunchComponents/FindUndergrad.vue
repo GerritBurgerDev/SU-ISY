@@ -135,7 +135,7 @@ export default {
     goToProgramme() {
       this.dialog = false;
 
-      const path = "http://127.0.0.1:5000/getUP";
+      const path = "https://isy-be.herokuapp.com/getUP";
 
       const getKey = this.buildKey();
 
