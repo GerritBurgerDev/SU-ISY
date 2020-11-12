@@ -1,7 +1,7 @@
 <template>
     <v-card>
         <!-- ISY SPINNER AND GREETING -->
-        <div>
+        <v-row>
             <div class="top">
                 <div class="atom-spinner">
                     <div class="spinner-inner">
@@ -17,10 +17,10 @@
                     Welcome to the Faculty of Science yearbook
                 </div>
             </div>
-        </div>
+        </v-row>
 
         <!-- CHOOSE USER TYPE -->
-        <div class="d-none d-xl-block d-md-block">
+        <v-row class="d-none d-xl-block d-md-block">
             <v-row>
                 <v-col>
                     <v-card elevation="3">
@@ -65,56 +65,58 @@
                     </v-card>
                 </v-col>
             </v-row>
-        </div>
+        </v-row>
 
-        <v-carousel
-            class="options-small d-none d-flex d-sm-flex d-md-none"
-            show-arrows-on-hover
-            hide-delimiters
-        >
-            <v-carousel-item>
-                <v-card elevation="3">
-                    <v-img
-                        src="https://picsum.photos/350/165?random"
-                        height="125"
-                        class="grey darken-4"
-                    ></v-img>
-                    <v-card-title class="my-2" justify-center>
-                        <v-btn @click.prevent="pickUndergrad"
-                            >Prospective Student</v-btn
-                        >
-                    </v-card-title>
-                </v-card>
-            </v-carousel-item>
-            <v-carousel-item>
-                <v-card elevation="3">
-                    <v-img
-                        src="https://picsum.photos/350/165?random"
-                        height="125"
-                        class="grey darken-4"
-                    ></v-img>
-                    <v-card-title class="my-2" justify-center>
-                        <v-btn @click.prevent="pickUndergrad"
-                            >Current Student</v-btn
-                        >
-                    </v-card-title>
-                </v-card>
-            </v-carousel-item>
-            <v-carousel-item>
-                <v-card elevation="3">
-                    <v-img
-                        src="https://picsum.photos/350/165?random"
-                        height="125"
-                        class="grey darken-4"
-                    ></v-img>
-                    <v-card-title class="my-2" justify-center>
-                        <v-btn @click.prevent="pickUndergrad"
-                            >Staff Member</v-btn
-                        >
-                    </v-card-title>
-                </v-card>
-            </v-carousel-item>
-        </v-carousel>
+        <v-row>
+            <v-carousel
+                class="options-small d-none d-flex d-sm-flex d-md-none"
+                show-arrows-on-hover
+                hide-delimiters
+            >
+                <v-carousel-item>
+                    <v-card elevation="3">
+                        <v-img
+                            src="https://picsum.photos/350/165?random"
+                            height="125"
+                            class="grey darken-4"
+                        ></v-img>
+                        <v-card-title class="my-2" justify-center>
+                            <v-btn @click.prevent="pickUndergrad"
+                                >Prospective Student</v-btn
+                            >
+                        </v-card-title>
+                    </v-card>
+                </v-carousel-item>
+                <v-carousel-item>
+                    <v-card elevation="3">
+                        <v-img
+                            src="https://picsum.photos/350/165?random"
+                            height="125"
+                            class="grey darken-4"
+                        ></v-img>
+                        <v-card-title class="my-2" justify-center>
+                            <v-btn @click.prevent="pickUndergrad"
+                                >Current Student</v-btn
+                            >
+                        </v-card-title>
+                    </v-card>
+                </v-carousel-item>
+                <v-carousel-item>
+                    <v-card elevation="3">
+                        <v-img
+                            src="https://picsum.photos/350/165?random"
+                            height="125"
+                            class="grey darken-4"
+                        ></v-img>
+                        <v-card-title class="my-2" justify-center>
+                            <v-btn @click.prevent="pickUndergrad"
+                                >Staff Member</v-btn
+                            >
+                        </v-card-title>
+                    </v-card>
+                </v-carousel-item>
+            </v-carousel>
+        </v-row>
     </v-card>
 </template>
 
