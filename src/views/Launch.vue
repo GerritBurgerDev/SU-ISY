@@ -184,7 +184,7 @@
         >
             <v-carousel-item v-if="this.loggedIn && this.userData['admin']">
                 <v-card light elevation="3" class="options-small-card">
-                    <v-card-title primary-title class="justify-center">
+                    <v-card-title title class="justify-center">
                         <div class="card-header">Staff</div>
                     </v-card-title>
                     <hr class="card-hr" />
@@ -193,7 +193,7 @@
                             class="card-button mt-4 mb-5"
                             @click="showAddProgramme()"
                             >Add a programme</v-btn
-                        >
+                        ><br/>
                         <v-btn
                             class="card-button mt-5 mb-10"
                             @click="showAddModule()"
@@ -269,7 +269,7 @@
                         <v-btn class="card-button mb-5 mt-4"
                             @click="pickUndergrad"
                             >Undergraduate</v-btn
-                        >
+                        ><br/>
                         <v-btn class="card-button mt-5 mb-10"
                             @click="pickPostgrad"
                             >Postgraduate</v-btn
