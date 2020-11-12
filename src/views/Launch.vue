@@ -92,7 +92,7 @@
                         </div>
                     </v-card>
                     <v-card
-                        v-if="!this.userData['admin']"
+                        v-if="this.loggedIn && !this.userData['admin']"
                         elevation="3"
                         class="options-large-card"
                     >
@@ -134,7 +134,7 @@
                         </div>
                     </v-card>
                     <v-card
-                        v-if="this.userData['admin']"
+                        v-if="this.loggedIn && this.userData['admin']"
                         elevation="3"
                         class="options-large-card"
                     >
