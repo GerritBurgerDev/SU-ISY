@@ -185,7 +185,7 @@ export default {
             }
         },
         goToPostgradProgramme(name) {
-            const path = "https://isy-be.herokuapp.com/getPP";
+            const path = "http://127.0.0.1:5000/getPP";
 
             const payload = { key: name };
 
@@ -223,7 +223,7 @@ export default {
             }
         },
         goToModule(name) {
-            const path = "https://isy-be.herokuapp.com/getModule";
+            const path = "http://127.0.0.1:5000/getModule";
 
             const payload = { key: name };
 
@@ -253,7 +253,7 @@ export default {
             }
         },
         goToUndergardProgramme(name) {
-            const path = "https://isy-be.herokuapp.com/getUP";
+            const path = "http://127.0.0.1:5000/getUP";
 
             const payload = { key: name };
 

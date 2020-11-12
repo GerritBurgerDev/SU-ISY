@@ -103,7 +103,7 @@ export default {
 
   methods: {
     showDialog() {
-      const path = "https://isy-be.herokuapp.com/CCD";
+      const path = "http://127.0.0.1:5000/CCD";
 
       axios
         .post(path, { user_info: this.user })

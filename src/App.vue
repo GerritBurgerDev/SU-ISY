@@ -102,7 +102,7 @@ export default {
 
     methods: {
         getModules() {
-            const path = "https://isy-be.herokuapp.com/getModules";
+            const path = "http://127.0.0.1:5000/getModules";
             axios
                 .get(path)
                 .then(res => {
@@ -122,7 +122,7 @@ export default {
                 });
         },
         getProgrammes() {
-            const path = "https://isy-be.herokuapp.com/getUPs";
+            const path = "http://127.0.0.1:5000/getUPs";
             axios
                 .get(path)
                 .then(res => {
@@ -141,7 +141,7 @@ export default {
                     console.error(error);
                 });
 
-            const path2 = "https://isy-be.herokuapp.com/getPPs";
+            const path2 = "http://127.0.0.1:5000/getPPs";
             axios
                 .get(path2)
                 .then(res => {
@@ -161,7 +161,7 @@ export default {
                 });
         },
         getUserData(userId) {
-            const path = "https://isy-be.herokuapp.com/getUser";
+            const path = "http://127.0.0.1:5000/getUser";
             axios
                 .post(path, { id: userId })
                 .then(res => {

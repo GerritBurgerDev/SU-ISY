@@ -360,101 +360,101 @@ export default {
                 }
             }
         },
-        containsTable: function(Content) {
-            for (const item in Content) {
-                if (typeof Content[item] === "object") {
-                    return true;
-                }
-            }
+        // containsTable: function(Content) {
+        //     for (const item in Content) {
+        //         if (typeof Content[item] === "object") {
+        //             return true;
+        //         }
+        //     }
 
-            return false;
-        },
-        tablesOnlyUndergrad: function(Content) {
-            const objects = {};
+        //     return false;
+        // },
+        // tablesOnlyUndergrad: function(Content) {
+        //     const objects = {};
 
-            for (const item in Content) {
-                if (typeof Content[item] === "object") {
-                    objects[item] = Content[item];
-                }
-            }
+        //     for (const item in Content) {
+        //         if (typeof Content[item] === "object") {
+        //             objects[item] = Content[item];
+        //         }
+        //     }
 
-            return objects;
-        },
-        tablesOnly: function(Content) {
-            const objects = {};
+        //     return objects;
+        // },
+        // tablesOnly: function(Content) {
+        //     const objects = {};
 
-            for (const item in Content) {
-                if (Array.isArray(Content[item])) {
-                    objects[item] = Content[item];
-                }
-            }
+        //     for (const item in Content) {
+        //         if (Array.isArray(Content[item])) {
+        //             objects[item] = Content[item];
+        //         }
+        //     }
 
-            return objects;
-        },
-        getInnerTables: function(Content) {
-            const tables = {};
+        //     return objects;
+        // },
+        // getInnerTables: function(Content) {
+        //     const tables = {};
 
-            for (const item in Content) {
-                if (
-                    typeof Content[item] === "object" &&
-                    !Array.isArray(Content[item])
-                ) {
-                    tables[item] = Content[item];
-                }
-            }
+        //     for (const item in Content) {
+        //         if (
+        //             typeof Content[item] === "object" &&
+        //             !Array.isArray(Content[item])
+        //         ) {
+        //             tables[item] = Content[item];
+        //         }
+        //     }
 
-            return tables;
-        },
-        textOnly: function(Content) {
-            const textOnly = [];
+        //     return tables;
+        // },
+        // textOnly: function(Content) {
+        //     const textOnly = [];
 
-            for (const item in Content) {
-                if (Content[item] === "text") {
-                    textOnly.push(item);
-                }
-            }
+        //     for (const item in Content) {
+        //         if (Content[item] === "text") {
+        //             textOnly.push(item);
+        //         }
+        //     }
 
-            return textOnly;
-        },
-        modulesOnly: function(Content) {
-            const mods = {};
+        //     return textOnly;
+        // },
+        // modulesOnly: function(Content) {
+        //     const mods = {};
 
-            for (const item in Content) {
-                if (
-                    Content[item] !== "text" &&
-                    typeof Content[item] !== "object"
-                ) {
-                    mods[item] = Content[item];
-                }
-            }
+        //     for (const item in Content) {
+        //         if (
+        //             Content[item] !== "text" &&
+        //             typeof Content[item] !== "object"
+        //         ) {
+        //             mods[item] = Content[item];
+        //         }
+        //     }
 
-            return mods;
-        },
-        getTableHeaderClass: function(Header) {
-            if (Header === "Module Name") {
-                return "col-4";
-            } else {
-                return "col-1";
-            }
-        },
-        getTextTables: function(Content, PrevHeader) {
-            const data = {};
+        //     return mods;
+        // },
+        // getTableHeaderClass: function(Header) {
+        //     if (Header === "Module Name") {
+        //         return "col-4";
+        //     } else {
+        //         return "col-1";
+        //     }
+        // },
+        // getTextTables: function(Content, PrevHeader) {
+        //     const data = {};
 
-            if (
-                PrevHeader.includes("Compulsory Module") ||
-                PrevHeader.includes("Elective Module")
-            ) {
-                return {};
-            }
+        //     if (
+        //         PrevHeader.includes("Compulsory Module") ||
+        //         PrevHeader.includes("Elective Module")
+        //     ) {
+        //         return {};
+        //     }
 
-            for (const entry in Content) {
-                if (!Array.isArray(Content[entry])) {
-                    data[entry] = Content[entry];
-                }
-            }
+        //     for (const entry in Content) {
+        //         if (!Array.isArray(Content[entry])) {
+        //             data[entry] = Content[entry];
+        //         }
+        //     }
 
-            return data;
-        },
+        //     return data;
+        // },
         showEditor() {
             EventBus.$emit("showProgrammeEditor", {
                 programme: this.programme,
@@ -462,7 +462,7 @@ export default {
             });
         },
         confirmRemoveProgramme() {
-            const path = "https://isy-be.herokuapp.com/removeProgramme";
+            const path = "http://127.0.0.1:5000/removeProgramme";
 
             axios
                 .post(path, {

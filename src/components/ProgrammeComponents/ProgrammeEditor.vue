@@ -40,7 +40,7 @@
                             <v-icon
                                 large
                                 color="grey darken-2"
-                                class="pl-10 ml-5"
+                                class="pl-10 ml-5 ar-edit"
                                 @click="editRequirements = true"
                             >
                                 create
@@ -88,7 +88,7 @@
                             <v-icon
                                 large
                                 color="grey darken-2"
-                                class="pl-10 ml-5"
+                                class="pl-10 ml-5 postgrad-add-list-main"
                                 @click="this.createList"
                                 v-else
                             >
@@ -160,7 +160,7 @@
                     max-width="900"
                     max-height="600"
                 >
-                    <v-card>
+                    <v-card class="ar-editor">
                         <v-card-title class="headline pb-0"
                             >Edit admission requirements <v-spacer />
                             <div
@@ -170,7 +170,7 @@
                                 <v-icon
                                     small
                                     color="red darken-2"
-                                    class="mr-1"
+                                    class="mr-1 ar_remove"
                                     @click="changeReqAmt(false)"
                                 >
                                     remove
@@ -179,7 +179,7 @@
                                 <v-icon
                                     small
                                     color="green darken-2"
-                                    class="ml-1"
+                                    class="ml-1 ar_add"
                                     @click="changeReqAmt(true)"
                                 >
                                     add
@@ -192,7 +192,7 @@
                                 <v-icon
                                     medium
                                     color="green darken-2"
-                                    class="ml-1"
+                                    class="ml-1 ar_p_add"
                                     @click="addReq(true)"
                                 >
                                     add
@@ -225,7 +225,9 @@
                                             color="red darken-1"
                                             dark
                                             class="mt-5"
-                                            @click="admissionGuidelines = true"
+                                            @click="
+                                                admissionGuidelinesUndergrad = true
+                                            "
                                         >
                                             Click me
                                         </v-btn>
@@ -268,7 +270,9 @@
                                             color="red darken-1"
                                             dark
                                             class="mt-5"
-                                            @click="admissionGuidelines = true"
+                                            @click="
+                                                admissionGuidelinesPostgrad = true
+                                            "
                                         >
                                             Click me
                                         </v-btn>
@@ -279,6 +283,7 @@
                                 :payload="this.admission_requirements"
                                 :depth="0"
                                 :prev-key="''"
+                                class=""
                             />
                         </v-container>
 
@@ -1424,6 +1429,249 @@
                 </v-dialog>
             </v-row>
         </template>
+
+        <template>
+            <v-row justify="center">
+                <v-dialog
+                    v-model="admissionGuidelinesUndergrad"
+                    persistent
+                    width="75vw"
+                >
+                    <v-card class="" min-height="85vh">
+                        <v-card-title class="headline pb-0">
+                            Undergraduate Programme Requirements Guideline
+                        </v-card-title>
+
+                        <v-container class="">
+                            <v-alert
+                                border="left"
+                                colored-border
+                                type="error"
+                                elevation="2"
+                            >
+                                The format will be explained by showing and
+                                explaining an example programmes - Computer
+                                Science.
+                            </v-alert>
+
+                            <v-alert
+                                border="left"
+                                colored-border
+                                type="info"
+                                elevation="2"
+                            >
+                                The Computer Science programme's requirements
+                                are as follows:
+                                <ul>
+                                    <li>'Average - 65'</li>
+                                    <li>'Afrikaans - 4' OR 'English - 4'</li>
+                                    <li>
+                                        'Any other subject from the designated
+                                        list for university admission - 4' OR
+                                        'Physical Sciences - 4'
+                                    </li>
+                                    <li>'Mathematics - 6'</li>
+                                </ul>
+                                From the list above we can see that all of the
+                                individual requirements are
+                                <span class="font-weight-bold"
+                                    >encapsulated with single qoutes, which is
+                                    very important.</span
+                                ><br />
+                                The first item 'Average - 65' is how you specify
+                                the average mark the student had to achieve in
+                                grade 12 in order to enroll for the
+                                programmes.<br />
+                                <br />
+                                The last three items are how the subjects are
+                                specified:
+                                <ul>
+                                    <li>
+                                        To specify the code the student had to
+                                        achieve for a specific subject a
+                                        <span class="font-weight-bold"
+                                            >dash (-)</span
+                                        >
+                                        seperator is used, for example in list
+                                        item 2 we can see that the student must
+                                        have a code 4 for afrikaans or english.
+                                    </li>
+                                    <li>
+                                        Item 2 and 3 shows how to specify
+                                        requirements that the student can choose
+                                        between, by using the
+                                        <span class="font-weight-bold">OR</span>
+                                        specifier. For example the student
+                                        should either have had a code 4 for
+                                        Afrikaans or for English.
+                                    </li>
+                                    <li>
+                                        Lastly, it is important to note that
+                                        each of the items listed is a
+                                        <span class="font-weight-bold"
+                                            >MUST HAVE</span
+                                        >
+                                        requirement of the student. This means
+                                        that a studemt who wants to enroll to
+                                        study BSc Computer Science must have a
+                                        code 6 achievement for mathematics, a
+                                        code 4 achievement for either english or
+                                        afrikaans, a code 4 achievement for
+                                        either physical sciences or any other
+                                        acredited subject and an overall average
+                                        of 65% for grade 12.
+                                    </li>
+                                </ul>
+                                <br />
+                                The following is a list of possible items you
+                                can specify
+                                <span class="font-weight-bold"
+                                    >(spelling is very important)</span
+                                >:
+                                <ul>
+                                    <li>Average</li>
+                                    <li>Afrikaans</li>
+                                    <li>English</li>
+                                    <li>Mathematics</li>
+                                    <li>Physical Sciences</li>
+                                    <li>
+                                        Any other subject from the designated
+                                        list for university admission
+                                    </li>
+                                </ul>
+                            </v-alert>
+                        </v-container>
+
+                        <v-card-actions>
+                            <v-spacer></v-spacer>
+                            <v-btn
+                                color="green darken-1"
+                                text
+                                @click="admissionGuidelinesUndergrad = false"
+                                >OK</v-btn
+                            >
+                        </v-card-actions>
+                    </v-card>
+                </v-dialog>
+            </v-row>
+        </template>
+
+        <template>
+            <v-row justify="center">
+                <v-dialog
+                    v-model="admissionGuidelinesPostgrad"
+                    persistent
+                    width="75vw"
+                >
+                    <v-card class="" min-height="85vh">
+                        <v-card-title class="headline pb-0">
+                            Postgraduate Programme Requirements Guideline
+                        </v-card-title>
+
+                        <v-container class="">
+                            <v-alert
+                                border="left"
+                                colored-border
+                                type="error"
+                                elevation="2"
+                            >
+                                The format will be explained by showing and
+                                explaining an example programmes - BSc
+                                Microbiology (Hons)
+                            </v-alert>
+
+                            <v-alert
+                                border="left"
+                                colored-border
+                                type="info"
+                                elevation="2"
+                            >
+                                The requirements for the programme is given in a
+                                tree format to easily explain how it should be
+                                structured:
+                                <ul>
+                                    <li>
+                                        1:
+                                        <ul>
+                                            <li>Microbiology 3: 60</li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        2:
+                                        <ul>
+                                            <li>
+                                                Chemistry and Polymer Science:
+                                                <ul>
+                                                    <li>
+                                                        1:
+                                                        <ul>
+                                                            <li>
+                                                                Microbiology
+                                                                314: 60
+                                                            </li>
+                                                            <li>
+                                                                Microbiology
+                                                                324: 60
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+                                                    <li>
+                                                        2:
+                                                        <ul>
+                                                            <li>
+                                                                Microbiology
+                                                                314: 60
+                                                            </li>
+                                                            <li>
+                                                                Microbiology
+                                                                364: 60
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+
+                                From the tree above there are a few things to
+                                point out.
+                                <ul>
+                                    <li>
+                                        The primary list items 1 and 2
+                                        symbolises that the student has two
+                                        choices in order to qualify for this
+                                        programme:
+                                        <ul>
+                                            <li>The first possibility is that the student should have majored in Microbiology and must have an average of 60% for their major.</li>
+                                            <li>The second possibility is more complex. The student must have studied the stream Chemistry and Polymer Science. The lists within this requirement signify that the student must have chosen one of two combinations of modules:
+                                                <ul>
+                                                    <li>The student must have chosen Microbiology 314 and 324 and must have achieved 60% average for these modules.</li>
+                                                    <li>OR the student must have chosen Microbiology 314 and 364 and must have achieved 60% average for these modules.</li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>In order to specify choices you thus create separate lists containing their respective requirements which can either be a major in a subject, a certain programme, or modules.</li>
+                                    <li>In order to specify that a student had to have majored in a certain subject you have to use the format: <span class="font-weight-bold">{Module name} 3</span>. (This will check that the student took 4 modules of the specified subject or the maximum amount of modules for the sbuject if there is less than 4 available.</li>
+                                    <li>In order to specify that a student should have followed a certain programme or more specifically a stream or option within a programme you simply specify the programme, stream or option. <span class="font-weight-bold">(spelling is very important so please double check)</span></li>
+                                </ul>
+                            </v-alert>
+                        </v-container>
+
+                        <v-card-actions>
+                            <v-spacer></v-spacer>
+                            <v-btn
+                                color="green darken-1"
+                                text
+                                @click="admissionGuidelinesPostgrad = false"
+                                >OK</v-btn
+                            >
+                        </v-card-actions>
+                    </v-card>
+                </v-dialog>
+            </v-row>
+        </template>
     </div>
 </template>
 
@@ -1470,6 +1718,8 @@ export default {
             admission_requirements: {},
             admission_requirements_backup: {},
             requirements_only: [],
+            admissionGuidelinesUndergrad: false,
+            admissionGuidelinesPostgrad: false,
 
             // ISE (Information Section Editor) variables
             createCardDialog: false,
@@ -1541,21 +1791,23 @@ export default {
         getNumOfKeys: function(obj) {
             let count = 0;
 
-            for(const item in obj) {
-                if(this.isNumeric(item)) count++;
+            for (const item in obj) {
+                if (this.isNumeric(item)) count++;
             }
 
             return count;
         },
         convertAR() {
-            let ar = {'avg': 0, requirements: {}};
+            let ar = { avg: 0, requirements: {} };
 
-            for(const i in this.requirements_only) {
+            for (const i in this.requirements_only) {
                 let item = this.requirements_only[i];
 
-                if (item.includes('Average')) {
+                if (item.includes("Average")) {
                     item = item.replaceAll("'", "");
-                    ar['avg'] = parseInt(item.substring(item.length - 2, item.length));
+                    ar["avg"] = parseInt(
+                        item.substring(item.length - 2, item.length)
+                    );
                 } else {
                     if (item.includes("OR")) {
                         item = item.replaceAll("'", "");
@@ -1563,24 +1815,26 @@ export default {
 
                         let obj = {};
 
-                        for(const j in arr) {
+                        for (const j in arr) {
                             let subj_temp = arr[j];
 
                             let temp_arr = subj_temp.split(" - ");
                             obj[temp_arr[0]] = parseInt(temp_arr[1]);
                         }
 
-                        ar['requirements'][this.getNumOfKeys(ar['requirements']) + 1] = obj;
+                        ar["requirements"][
+                            this.getNumOfKeys(ar["requirements"]) + 1
+                        ] = obj;
                     } else {
                         item = item.replaceAll("'", "");
                         let temp_arr = item.split(" - ");
-                        ar['requirements'][temp_arr[0]] = parseInt(temp_arr[1]);
+                        ar["requirements"][temp_arr[0]] = parseInt(temp_arr[1]);
                     }
                 }
             }
 
-            this.admission_requirements['avg'] = ar['avg'];
-            this.admission_requirements['requirements'] = ar['requirements'];
+            this.admission_requirements["avg"] = ar["avg"];
+            this.admission_requirements["requirements"] = ar["requirements"];
         },
         changeReqAmt(option) {
             if (option) {
@@ -1608,8 +1862,7 @@ export default {
             EventBus.$emit("reloadAE", true);
         },
         getAdmissionRequirements() {
-            const path =
-                "https://isy-be.herokuapp.com/getAdmissionRequirements";
+            const path = "http://127.0.0.1:5000/getAdmissionRequirements";
             axios
                 .post(path, { type: this.type, key: this.programme["_key"] })
                 .then(res => {
@@ -2851,9 +3104,8 @@ export default {
             this.aeEditDialog = true;
             this.aeKey = key;
             this.aeVal = val;
-            this.aeNewVal = val;
+            this.aeNewVal = "";
             this.aeNewKey = key;
-            this.aeNewVal = val;
             this.aePrevKey = prev;
             this.aeType = type;
         },
@@ -2917,7 +3169,7 @@ export default {
                     this.aePrevKey,
                     this.aeKey,
                     this.aeNewKey,
-                    this.newVal
+                    newVal
                 );
             }
 
@@ -2939,7 +3191,7 @@ export default {
             this.resetAEVariables();
         },
         saveChanges() {
-            const path = "https://isy-be.herokuapp.com/saveProgramme";
+            const path = "http://127.0.0.1:5000/saveProgramme";
 
             axios
                 .post(path, {
@@ -2967,7 +3219,7 @@ export default {
                 });
         },
         addProgramme() {
-            const path = "https://isy-be.herokuapp.com/addProgramme";
+            const path = "http://127.0.0.1:5000/addProgramme";
 
             axios
                 .post(path, {
@@ -3010,8 +3262,8 @@ export default {
         EventBus.$on("showAddProgramme", res => {
             this.chooseType = res;
             this.typeAddProgramme = res;
-            if (this.type === 'undergrad') {
-                this.admission_requirements = {'avg': 0, requirements: {}};
+            if (this.type === "undergrad") {
+                this.admission_requirements = { avg: 0, requirements: {} };
             } else {
                 this.admission_requirements = {};
             }

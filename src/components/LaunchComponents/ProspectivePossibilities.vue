@@ -184,7 +184,7 @@ export default {
       }
 
       if (calc) {
-        const path = "https://isy-be.herokuapp.com/getProspectivePossibilities";
+        const path = "http://127.0.0.1:5000/getProspectivePossibilities";
 
         axios
           .post(path, this.form)
@@ -217,7 +217,7 @@ export default {
     goToProgramme(key) {
       this.dialog = false;
 
-      const path = "https://isy-be.herokuapp.com/getUP";
+      const path = "http://127.0.0.1:5000/getUP";
 
       const payload = { key: key };
 

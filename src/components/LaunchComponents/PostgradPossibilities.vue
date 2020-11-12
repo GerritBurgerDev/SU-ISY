@@ -51,7 +51,7 @@ export default {
 
   methods: {
     getPossibilities(userData) {
-      const path = "https://isy-be.herokuapp.com/getPostgradPossibilities";
+      const path = "http://127.0.0.1:5000/getPostgradPossibilities";
 
       axios
         .post(path, userData)
@@ -63,7 +63,7 @@ export default {
         });
     },
     goToPostgradProgramme(name) {
-      const path = "https://isy-be.herokuapp.com/getPP";
+      const path = "http://127.0.0.1:5000/getPP";
 
       const payload = { key: name };
 

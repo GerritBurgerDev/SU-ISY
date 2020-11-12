@@ -94,7 +94,7 @@ export default {
   },
   methods: {
     goToModule(name) {
-      const path = "https://isy-be.herokuapp.com/getModule";
+      const path = "http://127.0.0.1:5000/getModule";
 
       const payload = { key: name };
 

@@ -119,7 +119,7 @@ export default {
     goToProgramme() {
       this.postgradDialog = false;
 
-      const path = "https://isy-be.herokuapp.com/getPP";
+      const path = "http://127.0.0.1:5000/getPP";
 
       const getKey = this.buildKey();
 

@@ -42,7 +42,7 @@
             ref="aelist"
             v-slot="{ data }"
             :close-on-click="true"
-            class="pa-0"
+            class="pa-0 ar-click-list"
         >
             <template v-if="data">
                 <li>
@@ -72,7 +72,7 @@
             ref="aeentry"
             v-slot="{ data }"
             :close-on-click="true"
-            class="pa-0"
+            class="pa-0 ar-click-item"
         >
             <template v-if="data">
                 <li>
