@@ -1,5 +1,5 @@
 <template>
-    <v-card>
+    <v-card class="launch">
         <!-- ISY SPINNER AND GREETING -->
         <v-row>
             <div class="top">
