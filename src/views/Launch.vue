@@ -10,8 +10,10 @@
                             class="card-button mt-5 mb-2"
                             @click.prevent="pickUndergrad"
                             >Undergraduate</v-btn
-                        ><br/>
-                        <v-btn class="card-button mt-3 mb-5" @click.prevent="pickPostgrad"
+                        ><br />
+                        <v-btn
+                            class="card-button mt-3 mb-5"
+                            @click.prevent="pickPostgrad"
                             >Postgraduate</v-btn
                         >
                         <div class="card-text">
@@ -108,6 +110,11 @@
                                 <v-btn
                                     class="card-button"
                                     @click.prevent="showPostgradPossibilities"
+                                    :disabled="
+                                        !this.userData[
+                                            'undergrad'
+                                        ].hasOwnProperty('3rd year')
+                                    "
                                 >
                                     Postgraduate possibilities
                                 </v-btn>
@@ -182,7 +189,10 @@
                     <hr class="card-hr" />
                     <v-card-text class="text-center" style="width: 95vw">
                         <div class="card-text pb-10 pt-5">
-                            <h2>Unfortunately the staff options are only available on larger device screens.</h2>
+                            <h2>
+                                Unfortunately the staff options are only
+                                available on larger device screens.
+                            </h2>
                         </div>
                     </v-card-text>
                 </v-card>
@@ -204,7 +214,11 @@
                         <v-btn
                             class="card-button mt-5 mb-10"
                             @click.prevent="showPostgradPossibilities"
-                            :disabled="!this.userData['undergrad'].hasOwnProperty('3rd year')"
+                            :disabled="
+                                !this.userData['undergrad'].hasOwnProperty(
+                                    '3rd year'
+                                )
+                            "
                         >
                             Postgraduate possibilities
                         </v-btn>
