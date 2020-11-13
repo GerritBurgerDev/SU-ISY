@@ -34,6 +34,7 @@
                         <v-col
                             v-for="(year, key) in this.possibilities"
                             :key="year"
+                            cols="12" lg="4"
                         >
                             <div class="flex-line">
                                 <h2 class="ccd-year padd-left">{{ key }}</h2>
