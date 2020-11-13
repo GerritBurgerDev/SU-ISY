@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <v-card style="height: 100%">
+    <v-card class="gi-card" style="height: 100%">
       <v-tabs
         mobile-break-point="100"
         show-arrows
@@ -21,7 +21,7 @@
             :key="key"
           >
             <div
-              class="pl-8 pr-8"
+              class="pl-lg-8 pr-lg-8 pl-5 pr-5"
               v-html="info[key]"
               v-if="Object.keys(user).length === 0 || !user['admin']"
             ></div>
@@ -120,9 +120,16 @@
   .home {
     margin-left: 0 !important;
     margin-right: 0 !important;
-    padding-left: 2%;
-    padding-right: 2%;
-    height: 78vh;
+    padding-left: 0;
+    padding-right: 0;
+    height: 84vh;
+    width: 100vw !important;
+    position: absolute;
+    left: 0;
+  }
+
+  .gi-card {
+    width: 100vw !important;
   }
 }
 </style>

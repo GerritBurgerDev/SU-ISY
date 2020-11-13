@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="main-div">
         <v-card class="module">
             <div v-if="this.type === 'undergrad'">
                 <v-row class="programme-header">
@@ -79,7 +79,7 @@
             </div>
 
             <div v-if="this.type === 'postgrad'">
-                <div class="programme-header">
+                <div class="programme-header d-none d-xl-block d-md-block">
                     <div style="display: flex">
                         <h1>
                             {{ this.programme["degree"] }} in
@@ -115,6 +115,33 @@
                         <v-spacer></v-spacer>
                         <h3>
                             {{ this.programme["faculty"] }}
+                        </h3>
+                    </div>
+                    <div style="display: flex">
+                        <h3 v-if="this.programme['subject_code'] !== ''">
+                            Subject code - {{ this.programme["subject_code"] }}
+                        </h3>
+                        <v-spacer></v-spacer>
+                        <h3 v-if="this.programme['credits'] !== ''">
+                            {{ this.programme["credits"] }} credits
+                        </h3>
+                    </div>
+                </div>
+                <div class="programme-header d-none d-block d-sm-block d-md-none">
+                    <div style="display: flex">
+                        <h2>
+                            {{ this.programme["degree"] }} in {{ this.programme["module_name"] }}
+                        </h2>
+                    </div>
+                    <div style="">
+                        <h3>
+                            {{ this.programme["department"] }}
+                        </h3>
+                        <h3>
+                            {{ this.programme["faculty"] }}
+                        </h3>
+                        <h3 v-if="this.programme['module_code'] !== ''">
+                            Module code - {{ this.programme["module_code"] }}
                         </h3>
                     </div>
                     <div style="display: flex">
@@ -301,12 +328,21 @@
 }
 
 @media only screen and (max-width: 750px) {
+    .main-div {
+        width: 100vw;
+        margin: 0;
+        padding: 0;
+        position: absolute;
+        left: 0;
+    }
+
     .module {
         margin-left: 0;
         margin-right: 0;
         padding-left: 2%;
         padding-right: 2%;
-        height: 78vh;
+        height: 83vh;
+        width: 100vw;
     }
 }
 </style>
@@ -360,101 +396,6 @@ export default {
                 }
             }
         },
-        // containsTable: function(Content) {
-        //     for (const item in Content) {
-        //         if (typeof Content[item] === "object") {
-        //             return true;
-        //         }
-        //     }
-
-        //     return false;
-        // },
-        // tablesOnlyUndergrad: function(Content) {
-        //     const objects = {};
-
-        //     for (const item in Content) {
-        //         if (typeof Content[item] === "object") {
-        //             objects[item] = Content[item];
-        //         }
-        //     }
-
-        //     return objects;
-        // },
-        // tablesOnly: function(Content) {
-        //     const objects = {};
-
-        //     for (const item in Content) {
-        //         if (Array.isArray(Content[item])) {
-        //             objects[item] = Content[item];
-        //         }
-        //     }
-
-        //     return objects;
-        // },
-        // getInnerTables: function(Content) {
-        //     const tables = {};
-
-        //     for (const item in Content) {
-        //         if (
-        //             typeof Content[item] === "object" &&
-        //             !Array.isArray(Content[item])
-        //         ) {
-        //             tables[item] = Content[item];
-        //         }
-        //     }
-
-        //     return tables;
-        // },
-        // textOnly: function(Content) {
-        //     const textOnly = [];
-
-        //     for (const item in Content) {
-        //         if (Content[item] === "text") {
-        //             textOnly.push(item);
-        //         }
-        //     }
-
-        //     return textOnly;
-        // },
-        // modulesOnly: function(Content) {
-        //     const mods = {};
-
-        //     for (const item in Content) {
-        //         if (
-        //             Content[item] !== "text" &&
-        //             typeof Content[item] !== "object"
-        //         ) {
-        //             mods[item] = Content[item];
-        //         }
-        //     }
-
-        //     return mods;
-        // },
-        // getTableHeaderClass: function(Header) {
-        //     if (Header === "Module Name") {
-        //         return "col-4";
-        //     } else {
-        //         return "col-1";
-        //     }
-        // },
-        // getTextTables: function(Content, PrevHeader) {
-        //     const data = {};
-
-        //     if (
-        //         PrevHeader.includes("Compulsory Module") ||
-        //         PrevHeader.includes("Elective Module")
-        //     ) {
-        //         return {};
-        //     }
-
-        //     for (const entry in Content) {
-        //         if (!Array.isArray(Content[entry])) {
-        //             data[entry] = Content[entry];
-        //         }
-        //     }
-
-        //     return data;
-        // },
         showEditor() {
             EventBus.$emit("showProgrammeEditor", {
                 programme: this.programme,

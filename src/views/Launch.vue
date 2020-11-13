@@ -6,22 +6,14 @@
                     <v-card elevation="3" class="options-large-card">
                         <div class="card-header">Programmes</div>
                         <hr class="card-hr" />
-                        <div class="card-programmes-buttons">
-                            <div class="my-2">
-                                <v-btn
-                                    class="card-button"
-                                    @click.prevent="pickUndergrad"
-                                    >Undergraduate</v-btn
-                                >
-                            </div>
-                            <div class="my-3">
-                                <v-btn
-                                    class="card-button"
-                                    @click.prevent="pickPostgrad"
-                                    >Postgraduate</v-btn
-                                >
-                            </div>
-                        </div>
+                        <v-btn
+                            class="card-button mt-5 mb-2"
+                            @click.prevent="pickUndergrad"
+                            >Undergraduate</v-btn
+                        ><br/>
+                        <v-btn class="card-button mt-3 mb-5" @click.prevent="pickPostgrad"
+                            >Postgraduate</v-btn
+                        >
                         <div class="card-text">
                             Get all the information you need about the
                             programmes available in the faculty of science!
@@ -184,23 +176,13 @@
         >
             <v-carousel-item v-if="this.loggedIn && this.userData['admin']">
                 <v-card light elevation="3" class="options-small-card">
-                    <v-card-title title class="justify-center">
+                    <v-card-title primary-title class="justify-center">
                         <div class="card-header">Staff</div>
                     </v-card-title>
                     <hr class="card-hr" />
-                    <v-card-text class="text-center">
-                        <v-btn
-                            class="card-button mt-4 mb-5"
-                            @click="showAddProgramme()"
-                            >Add a programme</v-btn
-                        ><br/>
-                        <v-btn
-                            class="card-button mt-5 mb-10"
-                            @click="showAddModule()"
-                            >Add a module</v-btn
-                        >
-                        <div class="card-text">
-                            Add new modules or programmes to the system.
+                    <v-card-text class="text-center" style="width: 95vw">
+                        <div class="card-text pb-10 pt-5">
+                            <h2>Unfortunately the staff options are only available on larger device screens.</h2>
                         </div>
                     </v-card-text>
                 </v-card>
@@ -222,6 +204,7 @@
                         <v-btn
                             class="card-button mt-5 mb-10"
                             @click.prevent="showPostgradPossibilities"
+                            :disabled="!this.userData['undergrad'].hasOwnProperty('3rd year')"
                         >
                             Postgraduate possibilities
                         </v-btn>
@@ -266,11 +249,13 @@
                         class="text-center"
                         v-if="heading === 'Programmes'"
                     >
-                        <v-btn class="card-button mb-5 mt-4"
+                        <v-btn
+                            class="card-button mb-5 mt-4"
                             @click="pickUndergrad"
                             >Undergraduate</v-btn
-                        ><br/>
-                        <v-btn class="card-button mt-5 mb-10"
+                        ><br />
+                        <v-btn
+                            class="card-button mt-5 mb-10"
                             @click="pickPostgrad"
                             >Postgraduate</v-btn
                         >

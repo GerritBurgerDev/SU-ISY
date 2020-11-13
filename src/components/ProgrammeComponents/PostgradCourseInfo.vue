@@ -53,7 +53,7 @@
             </v-expansion-panel>
 
             <v-row v-if="Object.keys(this.modulesTable).length !== 0">
-                <v-col class="pl-lg-10">
+                <v-col class="pl-lg-10" style="width: 100%; overflow-x: auto; background-color: white">
                     <v-row class="red" style="color: white;">
                         <v-col cols="2"> Subject Number</v-col>
                         <v-col cols="1"> Semester</v-col>

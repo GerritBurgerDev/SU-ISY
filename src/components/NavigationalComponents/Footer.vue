@@ -27,7 +27,7 @@ export default {
 
   data() {
     return {
-      links: [{ title: "HOME", icon: "home", path: "/" }]
+      links: [{ title: "HOME", icon: "home", path: "/home" }]
     };
   },
   methods: {}

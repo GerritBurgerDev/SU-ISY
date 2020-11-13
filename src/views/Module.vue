@@ -51,9 +51,9 @@
             </v-card>
 
             <v-row no-gutters class="prerequisites">
-                <v-col>
+                <v-col cols="12" lg="4">
                     <v-card
-                        class="pl-5 pt-2 pb-2 mr-2"
+                        class="pl-5 pt-2 pb-2 mr-lg-2"
                         style="min-height: 200px"
                         tile
                     >
@@ -73,9 +73,9 @@
                         </v-item-group>
                     </v-card>
                 </v-col>
-                <v-col>
+                <v-col cols="12" lg="4">
                     <v-card
-                        class="pl-5 pt-2 pb-2 mr-2 ml-2"
+                        class="pl-5 pt-2 pb-2 mt-5 mt-lg-0 mr-lg-2 ml-lg-2"
                         style="min-height: 200px"
                         tile
                     >
@@ -93,9 +93,9 @@
                         </v-item-group>
                     </v-card>
                 </v-col>
-                <v-col>
+                <v-col cols="12" lg="4">
                     <v-card
-                        class="pl-5 pt-2 pb-2 ml-2"
+                        class="pl-5 pt-2 pb-2 mt-5 mt-lg-0 ml-lg-2"
                         style="min-height: 200px"
                         tile
                     >
@@ -157,7 +157,7 @@
 <style scoped>
 @media only screen and (max-width: 5000px) {
     .module {
-        margin-top: -10px;
+        margin-top: 0;
         margin-left: 8%;
         margin-right: 8%;
         padding-left: 2%;
@@ -210,7 +210,8 @@
         margin-right: 0;
         padding-left: 2%;
         padding-right: 2%;
-        height: 78vh;
+        padding-bottom: 5%;
+        height: 84vh;
     }
 
     .module-header h1 {

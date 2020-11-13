@@ -1,6 +1,7 @@
 <template>
   <v-row justify="center">
-    <v-dialog v-model="dialog" max-width="40%">
+    <v-dialog v-model="dialog" width="40%"
+            :fullscreen="$vuetify.breakpoint.xsOnly">
       <v-card class="postgrad-possibilities">
         <v-row justify="center">
           <v-card-title>
@@ -24,7 +25,7 @@
           </v-col>
         </v-row>
 
-        <v-card-actions class="buttons">
+        <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn color="red darken-1" text @click="dialog = false">
             OK
