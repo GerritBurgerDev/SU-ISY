@@ -134,11 +134,11 @@ export default {
     mounted() {
         if (sessionStorage.modules) {
             this.modules = JSON.parse(sessionStorage.getItem("modules"));
-        } else {
-            EventBus.$on("getModules", (res) => {
-                this.modules = res;
-            });
         }
+        
+        EventBus.$on("getModules", (res) => {
+            this.modules = res;
+        });
 
         EventBus.$on("showPickModule", (res) => {
             for (const dep in this.modules) {

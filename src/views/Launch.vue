@@ -140,7 +140,7 @@
                         <div class="card-header">Staff</div>
                         <hr class="card-hr" />
                         <div class="card-programmes-buttons">
-                            <div class="my-2">
+                            <div class="mt-10 mb-5">
                                 <v-btn
                                     v-if="
                                         this.loggedIn && this.userData['admin']
@@ -153,7 +153,7 @@
                                     >Add a programme</v-btn
                                 >
                             </div>
-                            <div class="my-3">
+                            <div class="mt-5 mb-10">
                                 <v-btn
                                     v-if="
                                         this.loggedIn && this.userData['admin']

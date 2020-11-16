@@ -191,7 +191,8 @@ export default {
                     this.$router.replace("/home");
                 }
             } catch (e) {
-                console.log(to + from);
+                this.test = to;
+                this.test = from;
                 return;
             }
         },
@@ -218,6 +219,7 @@ export default {
         if (sessionStorage.user) {
             this.user = JSON.parse(sessionStorage.getItem("user"));
             this.loggedIn = true;
+            this.$router.replace("/home");
         } else {
             this.loggedIn = false;
         }

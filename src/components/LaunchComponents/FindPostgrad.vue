@@ -203,6 +203,45 @@ export default {
         openPickProgramme(val) {
             this.postgradDialog = val;
         },
+        getProgrammesGlobal() {
+            const path = "https://isy-be.herokuapp.com/getUPs";
+            axios
+                .get(path)
+                .then((res) => {
+                    this.undergrad = res.data.undergrad;
+
+                    if (!sessionStorage.undergradProgrammes) {
+                        sessionStorage.setItem(
+                            "undergradProgrammes",
+                            JSON.stringify(this.undergrad)
+                        );
+                    }
+
+                    EventBus.$emit("getUP", this.undergrad);
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
+
+            const path2 = "https://isy-be.herokuapp.com/getPPs";
+            axios
+                .get(path2)
+                .then((res) => {
+                    this.postgrad = res.data.postgrad;
+
+                    if (!sessionStorage.postgradProgrammes) {
+                        sessionStorage.setItem(
+                            "postgradProgrammes",
+                            JSON.stringify(this.postgrad)
+                        );
+                    }
+
+                    EventBus.$emit("getPP", this.postgrad);
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
+        },
     },
     created() {},
     mounted() {
@@ -210,13 +249,20 @@ export default {
             this.programmes = JSON.parse(
                 sessionStorage.getItem("postgradProgrammes")
             );
-        } else {
-            EventBus.$on("getPP", (res) => {
-                this.programmes = res;
-            });
         }
+        EventBus.$on("getPP", (res) => {
+            this.programmes = res;
+        });
 
         EventBus.$on("showPostgrad", (res) => {
+            try {
+                this.getProgrammesGlobal();
+            } catch (error) {
+                this.programmes = JSON.parse(
+                    sessionStorage.getItem("postgradProgrammes")
+                );
+            }
+
             this.faculties = [];
 
             for (const faculty in this.programmes) {

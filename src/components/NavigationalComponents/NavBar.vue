@@ -420,8 +420,12 @@ export default {
                                         " " +
                                         stream +
                                         " " +
-                                        option;
-                                    items[option] = {
+                                        this.undergrad[programme]["programmes"][
+                                            degree
+                                        ][stream][option];
+                                    items[this.undergrad[programme]["programmes"][
+                                            degree
+                                        ][stream][option]] = {
                                         key: temp.replace(/\s/g, "_"),
                                         type: "undergrad",
                                     };
@@ -454,35 +458,55 @@ export default {
 
             this.searchItems = items;
         },
+        getModules() {
+            const path = "https://isy-be.herokuapp.com/getModules";
+            axios
+                .get(path)
+                .then((res) => {
+                    this.modules = res.data.departments;
+
+                    if (!sessionStorage.modules) {
+                        sessionStorage.setItem(
+                            "modules",
+                            JSON.stringify(this.modules)
+                        );
+                    }
+
+                    EventBus.$emit("getModules", this.modules);
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
+        },
     },
     created() {
         if (sessionStorage.modules) {
             this.modules = JSON.parse(sessionStorage.getItem("modules"));
-        } else {
-            EventBus.$on("getModules", (res) => {
-                this.modules = res;
-            });
         }
+
+        EventBus.$on("getModules", (res) => {
+            this.modules = res;
+        });
 
         if (sessionStorage.undergradProgrammes) {
             this.undergrad = JSON.parse(
                 sessionStorage.getItem("undergradProgrammes")
             );
-        } else {
-            EventBus.$on("getUP", (res) => {
-                this.undergrad = res;
-            });
         }
+
+        EventBus.$on("getUP", (res) => {
+            this.undergrad = res;
+        });
 
         if (sessionStorage.postgradProgrammes) {
             this.postgrad = JSON.parse(
                 sessionStorage.getItem("postgradProgrammes")
             );
-        } else {
-            EventBus.$on("getPP", (res) => {
-                this.postgrad = res;
-            });
         }
+
+        EventBus.$on("getPP", (res) => {
+            this.postgrad = res;
+        });
     },
     mounted() {
         EventBus.$on("updateDrawer", (res) => {
@@ -494,8 +518,8 @@ export default {
         this.getSearchBarItems();
 
         EventBus.$on("updateSearchBar", (res) => {
-            this.modules = res;
-
+            this.test = res;
+            this.getModules();
             this.getSearchData();
             this.getSearchBarItems();
         });

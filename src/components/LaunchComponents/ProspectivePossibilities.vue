@@ -279,7 +279,6 @@ export default {
             if (!val) return;
 
             this.calculating = false;
-            //   setTimeout(() => (this.calculating = false), 1000);
         },
         dialog(val) {
             if (val) return;

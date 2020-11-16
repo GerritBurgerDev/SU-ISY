@@ -3213,6 +3213,7 @@ export default {
 
                     EventBus.$emit("sendProgramme", result);
                     EventBus.$emit("updateProgramme", result);
+                    EventBus.$emit("updateSearchBar", true);
                 })
                 .catch(error => {
                     console.error(error);
@@ -3233,8 +3234,6 @@ export default {
                         data: res.data.programme
                     };
 
-                    this.$router.replace("/programme");
-
                     sessionStorage.setItem(
                         "currentProgramme",
                         JSON.stringify(result)
@@ -3242,10 +3241,15 @@ export default {
 
                     EventBus.$emit("sendProgramme", result);
                     EventBus.$emit("updateProgramme", result);
+                    EventBus.$emit("updateSearchBar", true);
                 })
                 .catch(error => {
                     console.error(error);
                 });
+            
+            if (this.$router.currentRoute.name !== "Programme") {
+                this.$router.push({ name: "Programme" });
+            }
         }
     },
 

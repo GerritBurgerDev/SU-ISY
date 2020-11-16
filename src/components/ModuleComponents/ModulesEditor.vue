@@ -516,6 +516,7 @@ export default {
 
                     EventBus.$emit("sendModule", this.get_module);
                     EventBus.$emit("updateModule", this.get_module);
+                    EventBus.$emit("updateSearchBar", true);
                 })
                 .catch(error => {
                     console.error(error);

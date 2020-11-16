@@ -1,6 +1,11 @@
 <template>
     <v-row justify="center" class="">
-        <v-dialog v-model="dialog" content-class="popup-dialog" width="30%" :fullscreen="$vuetify.breakpoint.xsOnly">
+        <v-dialog
+            v-model="dialog"
+            content-class="popup-dialog"
+            width="30%"
+            :fullscreen="$vuetify.breakpoint.xsOnly"
+        >
             <v-card class="popup">
                 <v-card-title class="headline"
                     >Choose a Programme:</v-card-title
@@ -237,6 +242,45 @@ export default {
         openPickProgramme(val) {
             this.dialog = val;
         },
+        getProgrammes() {
+            const path = "https://isy-be.herokuapp.com/getUPs";
+            axios
+                .get(path)
+                .then((res) => {
+                    this.undergrad = res.data.undergrad;
+
+                    if (!sessionStorage.undergradProgrammes) {
+                        sessionStorage.setItem(
+                            "undergradProgrammes",
+                            JSON.stringify(this.undergrad)
+                        );
+                    }
+
+                    EventBus.$emit("getUP", this.undergrad);
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
+
+            const path2 = "https://isy-be.herokuapp.com/getPPs";
+            axios
+                .get(path2)
+                .then((res) => {
+                    this.postgrad = res.data.postgrad;
+
+                    if (!sessionStorage.postgradProgrammes) {
+                        sessionStorage.setItem(
+                            "postgradProgrammes",
+                            JSON.stringify(this.postgrad)
+                        );
+                    }
+
+                    EventBus.$emit("getPP", this.postgrad);
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
+        },
     },
     created() {},
     mounted() {
@@ -244,13 +288,21 @@ export default {
             this.programmes = JSON.parse(
                 sessionStorage.getItem("undergradProgrammes")
             );
-        } else {
-            EventBus.$on("getUP", (res) => {
-                this.programmes = res;
-            });
         }
 
+        EventBus.$on("getUP", (res) => {
+            this.programmes = res;
+        });
+
         EventBus.$on("showUndergrad", (res) => {
+            try {
+                this.getProgrammes();
+            } catch (error) {
+                this.programmes = JSON.parse(
+                    sessionStorage.getItem("undergradProgrammes")
+                );
+            }
+
             for (const prog in this.programmes) {
                 this.programmes_only.push(prog);
             }

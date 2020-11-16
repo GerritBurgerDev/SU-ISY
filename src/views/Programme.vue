@@ -18,7 +18,7 @@
                         </h3>
                     </v-col>
                     <v-col
-                        class="d-flex pl-6 pt-2"
+                        class="d-none d-lg-flex d-xl-flex d-md-flex pl-6 pt-2"
                         cols="1"
                         v-if="Object.keys(user).length !== 0 && user['admin']"
                     >
@@ -91,7 +91,7 @@
                         </h1>
                         <v-icon
                             large
-                            class="editor-icon pl-3 pr-2"
+                            class="editor-icon pl-3 pr-2 d-none d-lg-flex d-xl-flex d-md-flex"
                             @click="showEditor"
                             v-if="
                                 Object.keys(user).length !== 0 && user['admin']
@@ -100,7 +100,7 @@
                         >
                         <v-icon
                             large
-                            class="delete-icon"
+                            class="delete-icon d-none d-lg-flex d-xl-flex d-md-flex"
                             @click="removeProgramme()"
                             v-if="
                                 Object.keys(user).length !== 0 && user['admin']
@@ -127,10 +127,13 @@
                         </h3>
                     </div>
                 </div>
-                <div class="programme-header d-none d-block d-sm-block d-md-none">
+                <div
+                    class="programme-header d-none d-block d-sm-block d-md-none"
+                >
                     <div style="display: flex">
                         <h2>
-                            {{ this.programme["degree"] }} in {{ this.programme["module_name"] }}
+                            {{ this.programme["degree"] }} in
+                            {{ this.programme["module_name"] }}
                         </h2>
                     </div>
                     <div style="">
@@ -359,7 +362,7 @@ export default {
 
     components: {
         pci,
-        uci
+        uci,
     },
     data() {
         return {
@@ -369,7 +372,7 @@ export default {
             programme_info: {},
             table: {},
             user: {},
-            confirmRemove: false
+            confirmRemove: false,
         };
     },
     methods: {
@@ -399,7 +402,7 @@ export default {
         showEditor() {
             EventBus.$emit("showProgrammeEditor", {
                 programme: this.programme,
-                type: this.type
+                type: this.type,
             });
         },
         confirmRemoveProgramme() {
@@ -408,19 +411,19 @@ export default {
             axios
                 .post(path, {
                     programme: this.programme,
-                    programme_type: this.type
+                    programme_type: this.type,
                 })
-                .then(res => {
+                .then((res) => {
                     this.temp = res;
-                    this.$router.replace("/");
+                    this.$router.replace("/home");
                 })
-                .catch(error => {
+                .catch((error) => {
                     console.error(error);
                 });
         },
         removeProgramme() {
             this.confirmRemove = true;
-        }
+        },
     },
     mounted() {
         if (sessionStorage.currentProgramme) {
@@ -431,12 +434,11 @@ export default {
             this.type = result.type;
         }
 
-        EventBus.$on("updateProgramme", res => {
+        EventBus.$on("updateProgramme", (res) => {
             this.programme = res.data;
             this.type = res.type;
             this.programme_info = {};
             this.getProgrammeInfoSections();
-            // this.getTable();
         });
 
         if (sessionStorage.user) {
@@ -444,7 +446,6 @@ export default {
         }
 
         this.getProgrammeInfoSections();
-        // this.getTable();
-    }
+    },
 };
 </script>

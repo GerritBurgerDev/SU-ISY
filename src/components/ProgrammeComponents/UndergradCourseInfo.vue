@@ -63,10 +63,10 @@
         </v-expansion-panels>
         <div v-else>
             <v-row justify="center">
-                <v-col cols="5" class="pl-lg-10">
+                <v-col cols="12" lg="5" class="pl-lg-10">
                     <v-row class="red" style="color: white;">
-                        <v-col cols="10"> Module</v-col>
-                        <v-col cols="2"> Credits</v-col>
+                        <v-col cols="9" lg="10"> Module</v-col>
+                        <v-col cols="3" lg="2"> Credits</v-col>
                     </v-row>
 
                     <v-row
@@ -144,8 +144,6 @@ export default {
                 table = this.getModules(this.payload);
             }
 
-            console.log(table);
-
             this.modulesTable = table;
         },
         type: function(payload) {
@@ -166,7 +164,6 @@ export default {
 
     mounted() {
         this.getTable();
-        console.log(this.modulesTable);
     }
 };
 </script>
