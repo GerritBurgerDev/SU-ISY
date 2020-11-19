@@ -86,7 +86,6 @@ export default {
         prospectivePossibilities,
         programmeEditor,
         moduleEditor,
-        // addModule,
     },
 
     data() {
@@ -128,12 +127,10 @@ export default {
                 .then((res) => {
                     this.undergrad = res.data.undergrad;
 
-                    if (!sessionStorage.undergradProgrammes) {
-                        sessionStorage.setItem(
-                            "undergradProgrammes",
-                            JSON.stringify(this.undergrad)
-                        );
-                    }
+                    sessionStorage.setItem(
+                        "undergradProgrammes",
+                        JSON.stringify(this.undergrad)
+                    );
 
                     EventBus.$emit("getUP", this.undergrad);
                 })
@@ -147,12 +144,10 @@ export default {
                 .then((res) => {
                     this.postgrad = res.data.postgrad;
 
-                    if (!sessionStorage.postgradProgrammes) {
-                        sessionStorage.setItem(
-                            "postgradProgrammes",
-                            JSON.stringify(this.postgrad)
-                        );
-                    }
+                    sessionStorage.setItem(
+                        "postgradProgrammes",
+                        JSON.stringify(this.postgrad)
+                    );
 
                     EventBus.$emit("getPP", this.postgrad);
                 })
@@ -215,6 +210,11 @@ export default {
     },
     mounted() {
         this.$vuetify.theme.dark = false;
+
+        EventBus.$on("updateProgrammes", (res) => {
+            this.test = res;
+            this.getProgrammes();
+        });
 
         if (sessionStorage.user) {
             this.user = JSON.parse(sessionStorage.getItem("user"));

@@ -93,7 +93,7 @@
                         <div class="card-header">Students</div>
                         <hr class="card-hr" />
                         <div class="card-programmes-buttons">
-                            <div class="my-2" v-if="this.loggedIn">
+                            <div class="mt-5 mb-2">
                                 <v-btn
                                     class="card-button"
                                     :to="{ path: '/continue-current-degree' }"
@@ -101,12 +101,7 @@
                                     Continue Current Degree
                                 </v-btn>
                             </div>
-                            <div class="my-2" v-else>
-                                <v-btn class="card-button" disabled>
-                                    Continue Current Degree
-                                </v-btn>
-                            </div>
-                            <div class="my-3" v-if="this.loggedIn">
+                            <div class="mt-2 mb-5">
                                 <v-btn
                                     class="card-button"
                                     @click.prevent="showPostgradPossibilities"
@@ -116,11 +111,6 @@
                                         ].hasOwnProperty('3rd year')
                                     "
                                 >
-                                    Postgraduate possibilities
-                                </v-btn>
-                            </div>
-                            <div class="my-3" v-else>
-                                <v-btn disabled class="card-button">
                                     Postgraduate possibilities
                                 </v-btn>
                             </div>
@@ -140,29 +130,19 @@
                         <div class="card-header">Staff</div>
                         <hr class="card-hr" />
                         <div class="card-programmes-buttons">
-                            <div class="mt-10 mb-5">
+                            <div class="mt-5 mb-5">
                                 <v-btn
-                                    v-if="
-                                        this.loggedIn && this.userData['admin']
-                                    "
+                                    :disabled="!this.loggedIn || !this.userData['admin']"
                                     class="card-button"
                                     @click="showAddProgramme()"
                                     >Add a programme</v-btn
                                 >
-                                <v-btn v-else class="card-button" disabled
-                                    >Add a programme</v-btn
-                                >
                             </div>
-                            <div class="mt-5 mb-10">
+                            <div class="mt-5 mb-5">
                                 <v-btn
-                                    v-if="
-                                        this.loggedIn && this.userData['admin']
-                                    "
                                     class="card-button"
+                                    :disabled="!this.loggedIn || !this.userData['admin']"
                                     @click="showAddModule()"
-                                    >Add a module</v-btn
-                                >
-                                <v-btn v-else class="card-button" disabled
                                     >Add a module</v-btn
                                 >
                             </div>
@@ -201,7 +181,7 @@
             <v-carousel-item v-if="this.loggedIn && !this.userData['admin']">
                 <v-card light elevation="3" class="options-small-card">
                     <v-card-title primary-title class="justify-center">
-                        <div class="card-header">Current Student</div>
+                        <div class="card-header">Students</div>
                     </v-card-title>
                     <hr class="card-hr" />
                     <v-card-text class="text-center">

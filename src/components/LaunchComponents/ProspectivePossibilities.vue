@@ -1,7 +1,11 @@
 <template>
     <v-row justify="center" class="">
-        <v-dialog v-model="dialog" content-class="psp-form-dialog" width="45%"
-            :fullscreen="$vuetify.breakpoint.xsOnly">
+        <v-dialog
+            v-model="dialog"
+            content-class="psp-form-dialog"
+            width="45%"
+            :fullscreen="$vuetify.breakpoint.xsOnly"
+        >
             <v-card class="psp-form">
                 <v-row justify="center">
                     <v-card-title v-if="!formCompleted">
@@ -40,7 +44,12 @@
                         >
                             {{ subject }}
                         </v-col>
-                        <v-col v-if="subject !== 'Average achieved'" cols="3" lg="2" sm="3">
+                        <v-col
+                            v-if="subject !== 'Average achieved'"
+                            cols="3"
+                            lg="2"
+                            sm="3"
+                        >
                             <v-select
                                 :class="
                                     'psp-' +
@@ -98,7 +107,7 @@
                         class="psp-form-loader"
                     ></v-progress-circular>
                 </v-row>
-                
+
                 <div v-else-if="formCompleted && !calculating">
                     <div class="psp-possibilities">
                         <v-row
@@ -116,6 +125,18 @@
                                 >
                                     {{ val }}
                                 </v-btn>
+                            </v-col>
+                        </v-row>
+                        <v-row
+                            class="justify-center pl-5 pr-5"
+                            v-if="Object.keys(this.possibilities).length === 0"
+                        >
+                            <v-col class="justify-center">
+                                <h2>
+                                    Unfortunately, you do not qualify for any of
+                                    the undergraduate programmes in the faculty
+                                    of science.
+                                </h2>
                             </v-col>
                         </v-row>
                     </div>
@@ -363,7 +384,7 @@ export default {
     }
 
     .psp-form-rows {
-      margin-left: 5%;
+        margin-left: 5%;
     }
 }
 </style>

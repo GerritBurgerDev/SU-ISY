@@ -415,6 +415,10 @@ export default {
                 })
                 .then((res) => {
                     this.temp = res;
+
+                    EventBus.$emit("updateProgrammes", true);
+                    EventBus.$emit("updateSearchBar", true);
+
                     this.$router.replace("/home");
                 })
                 .catch((error) => {

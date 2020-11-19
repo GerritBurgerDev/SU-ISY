@@ -2,9 +2,7 @@
     <div class="text-center">
         <v-dialog v-model="dialog" width="80vw" persistent>
             <v-card class="programme-editor">
-                <v-card-title class="headline">
-                    Edit programme
-                </v-card-title>
+                <v-card-title class="headline"> Edit programme </v-card-title>
                 <hr style="border-bottom-color: #c40b00" />
 
                 <v-container class="pa-2 pl-10 pr-10">
@@ -26,7 +24,6 @@
                                 :label="key"
                                 :append-icon="'mdi-close-circle'"
                                 @click:append="clearField(key)"
-                                :rules="rules"
                             />
                         </v-col>
                     </v-row>
@@ -334,9 +331,7 @@
                                         color="green darken-1"
                                     >
                                         <template v-slot:label>
-                                            <div @click.stop="">
-                                                Add a list
-                                            </div>
+                                            <div @click.stop="">Add a list</div>
                                         </template>
                                     </v-checkbox>
                                 </v-col>
@@ -658,7 +653,7 @@
                                                     umeRules.required,
                                                     umeRules.nan,
                                                     umeRules.tooSmall,
-                                                    umeRules.tooLarge
+                                                    umeRules.tooLarge,
                                                 ]"
                                             />
                                         </v-col>
@@ -754,7 +749,7 @@
                                             umeRules.required,
                                             umeRules.nan,
                                             umeRules.tooSmall,
-                                            umeRules.tooLarge
+                                            umeRules.tooLarge,
                                         ]"
                                     />
                                 </v-col>
@@ -799,7 +794,7 @@
                                         :items="[
                                             '1st year',
                                             '2nd year',
-                                            '3rd year'
+                                            '3rd year',
                                         ]"
                                     />
                                 </v-col>
@@ -1643,18 +1638,70 @@
                                         choices in order to qualify for this
                                         programme:
                                         <ul>
-                                            <li>The first possibility is that the student should have majored in Microbiology and must have an average of 60% for their major.</li>
-                                            <li>The second possibility is more complex. The student must have studied the stream Chemistry and Polymer Science. The lists within this requirement signify that the student must have chosen one of two combinations of modules:
+                                            <li>
+                                                The first possibility is that
+                                                the student should have majored
+                                                in Microbiology and must have an
+                                                average of 60% for their major.
+                                            </li>
+                                            <li>
+                                                The second possibility is more
+                                                complex. The student must have
+                                                studied the stream Chemistry and
+                                                Polymer Science. The lists
+                                                within this requirement signify
+                                                that the student must have
+                                                chosen one of two combinations
+                                                of modules:
                                                 <ul>
-                                                    <li>The student must have chosen Microbiology 314 and 324 and must have achieved 60% average for these modules.</li>
-                                                    <li>OR the student must have chosen Microbiology 314 and 364 and must have achieved 60% average for these modules.</li>
+                                                    <li>
+                                                        The student must have
+                                                        chosen Microbiology 314
+                                                        and 324 and must have
+                                                        achieved 60% average for
+                                                        these modules.
+                                                    </li>
+                                                    <li>
+                                                        OR the student must have
+                                                        chosen Microbiology 314
+                                                        and 364 and must have
+                                                        achieved 60% average for
+                                                        these modules.
+                                                    </li>
                                                 </ul>
                                             </li>
                                         </ul>
                                     </li>
-                                    <li>In order to specify choices you thus create separate lists containing their respective requirements which can either be a major in a subject, a certain programme, or modules.</li>
-                                    <li>In order to specify that a student had to have majored in a certain subject you have to use the format: <span class="font-weight-bold">{Module name} 3</span>. (This will check that the student took 4 modules of the specified subject or the maximum amount of modules for the sbuject if there is less than 4 available.</li>
-                                    <li>In order to specify that a student should have followed a certain programme or more specifically a stream or option within a programme you simply specify the programme, stream or option. <span class="font-weight-bold">(spelling is very important so please double check)</span></li>
+                                    <li>
+                                        In order to specify choices you thus
+                                        create separate lists containing their
+                                        respective requirements which can either
+                                        be a major in a subject, a certain
+                                        programme, or modules.
+                                    </li>
+                                    <li>
+                                        In order to specify that a student had
+                                        to have majored in a certain subject you
+                                        have to use the format:
+                                        <span class="font-weight-bold"
+                                            >{Module name} 3</span
+                                        >. (This will check that the student
+                                        took 4 modules of the specified subject
+                                        or the maximum amount of modules for the
+                                        sbuject if there is less than 4
+                                        available.
+                                    </li>
+                                    <li>
+                                        In order to specify that a student
+                                        should have followed a certain programme
+                                        or more specifically a stream or option
+                                        within a programme you simply specify
+                                        the programme, stream or option.
+                                        <span class="font-weight-bold"
+                                            >(spelling is very important so
+                                            please double check)</span
+                                        >
+                                    </li>
                                 </ul>
                             </v-alert>
                         </v-container>
@@ -1691,7 +1738,7 @@ export default {
         ume,
         ise,
         pce,
-        ae
+        ae,
     },
 
     data() {
@@ -1704,12 +1751,11 @@ export default {
             programme_backup: {},
             cards: {},
             course: {},
-            rules: [value => !!value || "Can't be empty."],
             umeRules: {
-                required: value => !!value || "Required",
-                nan: value => !isNaN(value) || "Must be a number",
-                tooSmall: value => parseInt(value) > 0 || "Too small",
-                tooLarge: value => parseInt(value) <= 128 || "Too large"
+                required: (value) => !!value || "Required",
+                nan: (value) => !isNaN(value) || "Must be a number",
+                tooSmall: (value) => parseInt(value) > 0 || "Too small",
+                tooLarge: (value) => parseInt(value) <= 128 || "Too large",
             },
             keyExistsError: false,
 
@@ -1766,7 +1812,7 @@ export default {
                 "Module Code": [""],
                 "Module Name": [""],
                 Semester: [""],
-                "Subject Number": [""]
+                "Subject Number": [""],
             },
             pceEditModules: {},
 
@@ -1779,16 +1825,16 @@ export default {
             aeVal: "",
             aeNewVal: "",
             aeAddItemKey: "",
-            aeAddItemVal: ""
+            aeAddItemVal: "",
         };
     },
 
     methods: {
-        isNumeric: function(str) {
+        isNumeric: function (str) {
             if (typeof str != "string") return false;
             return !isNaN(str) && !isNaN(parseInt(str));
         },
-        getNumOfKeys: function(obj) {
+        getNumOfKeys: function (obj) {
             let count = 0;
 
             for (const item in obj) {
@@ -1862,17 +1908,18 @@ export default {
             EventBus.$emit("reloadAE", true);
         },
         getAdmissionRequirements() {
-            const path = "https://isy-be.herokuapp.com/getAdmissionRequirements";
+            const path =
+                "https://isy-be.herokuapp.com/getAdmissionRequirements";
             axios
                 .post(path, { type: this.type, key: this.programme["_key"] })
-                .then(res => {
+                .then((res) => {
                     this.admission_requirements = res.data.requirements;
                     this.admission_requirements_backup = this.deepCopy(
                         this.admission_requirements
                     );
                     this.getRequirementsOnly();
                 })
-                .catch(error => {
+                .catch((error) => {
                     console.error(error);
                 });
         },
@@ -1918,7 +1965,7 @@ export default {
             this.requirements_only = arr;
         },
         // Get programme info like programme, stream, etc.
-        textContentOnly: function(dic) {
+        textContentOnly: function (dic) {
             let obj = {};
 
             for (let key in dic) {
@@ -1932,11 +1979,11 @@ export default {
             return obj;
         },
         // Create a deep copy of an object
-        deepCopy: function(obj) {
+        deepCopy: function (obj) {
             return JSON.parse(JSON.stringify(obj));
         },
         // Get info sections only
-        infoCardsOnly: function(dic) {
+        infoCardsOnly: function (dic) {
             let obj = {};
 
             for (let key in dic) {
@@ -1955,7 +2002,7 @@ export default {
             return obj;
         },
         // Add to an object method for UME
-        addToObjectUME: function(obj, prevKey, key, addKey, addContent) {
+        addToObjectUME: function (obj, prevKey, key, addKey, addContent) {
             if (!addKey.replace(/\s/g, "").length) {
                 return obj;
             }
@@ -1992,7 +2039,7 @@ export default {
             return obj;
         },
         // Delete from object for UME
-        filterObjectUME: function(obj, prevKey, key) {
+        filterObjectUME: function (obj, prevKey, key) {
             if (prevKey === "") {
                 for (let i in obj) {
                     if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
@@ -2016,7 +2063,7 @@ export default {
             return obj;
         },
         // Edit method for UME
-        editObjectUME: function(obj, prevKey, key, newKey) {
+        editObjectUME: function (obj, prevKey, key, newKey) {
             if (prevKey === "" || prevKey === this.umeYear) {
                 for (let i in obj) {
                     if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
@@ -2066,7 +2113,7 @@ export default {
             return obj;
         },
         // Add to an object method for PCE
-        addToObjectPCE: function(obj, prevKey, key, addKey, addContent) {
+        addToObjectPCE: function (obj, prevKey, key, addKey, addContent) {
             if (!addKey.replace(/\s/g, "").length) {
                 return obj;
             }
@@ -2116,7 +2163,7 @@ export default {
             return obj;
         },
         // Delete from object for PCE
-        filterObjectPCE: function(obj, prevKey, key) {
+        filterObjectPCE: function (obj, prevKey, key) {
             if (prevKey === "") {
                 for (let i in obj) {
                     if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
@@ -2148,7 +2195,7 @@ export default {
             return obj;
         },
         // Edit method for PCE
-        editObjectPCE: function(obj, prevKey, key, newKey) {
+        editObjectPCE: function (obj, prevKey, key, newKey) {
             if (prevKey === "") {
                 for (let i in obj) {
                     if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
@@ -2198,7 +2245,7 @@ export default {
             return obj;
         },
         // Add to object
-        addToObject: function(obj, key, addKey, addContent) {
+        addToObject: function (obj, key, addKey, addContent) {
             if (!addKey.replace(/\s/g, "").length) {
                 return obj;
             }
@@ -2231,7 +2278,7 @@ export default {
             return obj;
         },
         // Edit element in object
-        editObject: function(obj, key, newKey) {
+        editObject: function (obj, key, newKey) {
             for (let i in obj) {
                 if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
                 if (typeof obj[i] === "object" && i !== key) {
@@ -2250,7 +2297,7 @@ export default {
             return obj;
         },
         // Delete from object
-        filterObject: function(obj, key) {
+        filterObject: function (obj, key) {
             for (let i in obj) {
                 if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
                 if (typeof obj[i] === "object" && i !== key) {
@@ -2263,7 +2310,7 @@ export default {
         },
 
         // Add to an object method for AE
-        addToObjectAE: function(obj, prevKey, key, addKey, addContent) {
+        addToObjectAE: function (obj, prevKey, key, addKey, addContent) {
             if (!addKey.replace(/\s/g, "").length) {
                 return obj;
             }
@@ -2295,7 +2342,7 @@ export default {
             return obj;
         },
         // Delete from object for AE
-        filterObjectAE: function(obj, prevKey, key) {
+        filterObjectAE: function (obj, prevKey, key) {
             if (prevKey === "") {
                 for (let i in obj) {
                     if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
@@ -2319,7 +2366,7 @@ export default {
             return obj;
         },
         // Edit method for AE
-        editObjectAE: function(obj, prevKey, key, newKey, newVal) {
+        editObjectAE: function (obj, prevKey, key, newKey, newVal) {
             if (prevKey === "") {
                 for (let i in obj) {
                     if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
@@ -2794,7 +2841,7 @@ export default {
                 this.pceEditModules[header].push("");
             }
         },
-        findTable: function(obj, prevKey) {
+        findTable: function (obj, prevKey) {
             for (let i in obj) {
                 if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
                 if (typeof obj[i] === "object" && i !== prevKey) {
@@ -2858,7 +2905,7 @@ export default {
 
             EventBus.$emit("reloadPCE", true);
         },
-        getTable: function(obj) {
+        getTable: function (obj) {
             let temp = {};
 
             for (let item in obj) {
@@ -3061,22 +3108,22 @@ export default {
                 "Module Code": [""],
                 "Module Name": [""],
                 Semester: [""],
-                "Subject Number": [""]
+                "Subject Number": [""],
             };
             this.pceEditModules = {};
         },
-        setType: function(params) {
+        setType: function (params) {
             if (params === "undergrad") {
                 this.programme = {
                     "Programme Content": {},
                     degree: "",
                     programme: "",
                     stream: "",
-                    option: ""
+                    option: "",
                 };
                 this.admission_requirements = {
                     avg: 0,
-                    requirements: {}
+                    requirements: {},
                 };
             } else {
                 this.programme = {
@@ -3087,7 +3134,7 @@ export default {
                     credits: "",
                     module_code: "",
                     module_name: "",
-                    subject_code: ""
+                    subject_code: "",
                 };
                 this.admission_requirements = {};
             }
@@ -3198,12 +3245,12 @@ export default {
                     programme: this.programme,
                     backup: this.programme_backup,
                     programme_type: this.type,
-                    admission_req: this.admission_requirements
+                    admission_req: this.admission_requirements,
                 })
-                .then(res => {
+                .then((res) => {
                     const result = {
                         type: this.type,
-                        data: res.data.programme
+                        data: res.data.programme,
                     };
 
                     sessionStorage.setItem(
@@ -3211,11 +3258,12 @@ export default {
                         JSON.stringify(result)
                     );
 
+                    EventBus.$emit("updateProgrammes", true);
                     EventBus.$emit("sendProgramme", result);
                     EventBus.$emit("updateProgramme", result);
                     EventBus.$emit("updateSearchBar", true);
                 })
-                .catch(error => {
+                .catch((error) => {
                     console.error(error);
                 });
         },
@@ -3226,12 +3274,12 @@ export default {
                 .post(path, {
                     programme: this.programme,
                     programme_type: this.type,
-                    admission_req: this.admission_requirements
+                    admission_req: this.admission_requirements,
                 })
-                .then(res => {
+                .then((res) => {
                     const result = {
                         type: this.type,
-                        data: res.data.programme
+                        data: res.data.programme,
                     };
 
                     sessionStorage.setItem(
@@ -3239,22 +3287,23 @@ export default {
                         JSON.stringify(result)
                     );
 
+                    EventBus.$emit("updateProgrammes", true);
                     EventBus.$emit("sendProgramme", result);
                     EventBus.$emit("updateProgramme", result);
                     EventBus.$emit("updateSearchBar", true);
                 })
-                .catch(error => {
+                .catch((error) => {
                     console.error(error);
                 });
-            
+
             if (this.$router.currentRoute.name !== "Programme") {
                 this.$router.push({ name: "Programme" });
             }
-        }
+        },
     },
 
     mounted() {
-        EventBus.$on("showProgrammeEditor", res => {
+        EventBus.$on("showProgrammeEditor", (res) => {
             this.dialog = true;
             this.type = res.type;
             this.programme = this.deepCopy(res.programme);
@@ -3263,7 +3312,7 @@ export default {
             this.getAdmissionRequirements();
         });
 
-        EventBus.$on("showAddProgramme", res => {
+        EventBus.$on("showAddProgramme", (res) => {
             this.chooseType = res;
             this.typeAddProgramme = res;
             if (this.type === "undergrad") {
@@ -3274,64 +3323,64 @@ export default {
         });
 
         // Event Listeners for Information Section Editor
-        EventBus.$on("peISEAddItem", res => {
+        EventBus.$on("peISEAddItem", (res) => {
             this.iseAddItem(res);
         });
-        EventBus.$on("peISEEditItem", res => {
+        EventBus.$on("peISEEditItem", (res) => {
             this.iseEditItem(res);
         });
-        EventBus.$on("peISEDeleteEntry", res => {
+        EventBus.$on("peISEDeleteEntry", (res) => {
             this.iseDeleteEntry(res);
         });
 
         // Event Listeners for Undergrad Modules Editor
-        EventBus.$on("peUMEAddList", res => {
+        EventBus.$on("peUMEAddList", (res) => {
             this.umeAddItem(res.key, res.year, res.prev, "List");
         });
-        EventBus.$on("peUMEAddAlert", res => {
+        EventBus.$on("peUMEAddAlert", (res) => {
             this.umeAddItem(res.key, res.year, res.prev, "Alert");
         });
-        EventBus.$on("peUMEAddCredits", res => {
+        EventBus.$on("peUMEAddCredits", (res) => {
             this.umeAddItem(res.key, res.year, res.prev, "Credits");
         });
-        EventBus.$on("peUMEAddModule", res => {
+        EventBus.$on("peUMEAddModule", (res) => {
             this.umeAddItem(res.key, res.year, res.prev, "Module");
         });
-        EventBus.$on("peUMEEditItem", res => {
+        EventBus.$on("peUMEEditItem", (res) => {
             this.umeEditItem(res.key, res.year, res.prev, res.type, res.value);
         });
-        EventBus.$on("peUMEDeleteItem", res => {
+        EventBus.$on("peUMEDeleteItem", (res) => {
             this.umeDeleteItem(res.key, res.year, res.prev);
         });
 
         // Event Listeners for Postgrad Course Editor
-        EventBus.$on("pePCEAdd", res => {
+        EventBus.$on("pePCEAdd", (res) => {
             this.pceAddItem(res.key, res.prev, res.type);
         });
-        EventBus.$on("pePCEEditItem", res => {
+        EventBus.$on("pePCEEditItem", (res) => {
             this.pceEditItem(res.root, res.key, res.prev, res.type);
         });
-        EventBus.$on("pePCEDeleteItem", res => {
+        EventBus.$on("pePCEDeleteItem", (res) => {
             this.pceDeleteItem(res.key, res.prev);
         });
 
         // Event Listeners for Admission Requirements Editor
-        EventBus.$on("aeAddList", res => {
+        EventBus.$on("aeAddList", (res) => {
             this.aeAdd(res.key, res.prev, "List");
         });
-        EventBus.$on("aeAddItem", res => {
+        EventBus.$on("aeAddItem", (res) => {
             this.aeAdd(res.key, res.prev, "Item");
         });
-        EventBus.$on("aeEditList", res => {
+        EventBus.$on("aeEditList", (res) => {
             this.aeEdit(res.key, res.prev, "", "List");
         });
-        EventBus.$on("aeEditItem", res => {
+        EventBus.$on("aeEditItem", (res) => {
             this.aeEdit(res.key, res.prev, res.val, "Item");
         });
-        EventBus.$on("aeDeleteItem", res => {
+        EventBus.$on("aeDeleteItem", (res) => {
             this.aeDeleteItem(res.key, res.prev);
         });
-    }
+    },
 };
 </script>
 

@@ -174,21 +174,31 @@ export default {
         },
         searchAction() {
             if (this.searchVal !== null) {
-                if (this.searchItems[this.searchVal]["type"] === "module") {
-                    this.goToModule(this.searchItems[this.searchVal]["key"]);
-                    this.searchVal = null;
-                }
-                if (this.searchItems[this.searchVal]["type"] === "undergrad") {
-                    this.goToUndergardProgramme(
-                        this.searchItems[this.searchVal]["key"]
-                    );
-                    this.searchVal = null;
-                }
-                if (this.searchItems[this.searchVal]["type"] === "postgrad") {
-                    this.goToPostgradProgramme(
-                        this.searchItems[this.searchVal]["key"]
-                    );
-                    this.searchVal = null;
+                try {
+                    if (this.searchItems[this.searchVal]["type"] === "module") {
+                        this.goToModule(
+                            this.searchItems[this.searchVal]["key"]
+                        );
+                        this.searchVal = null;
+                    }
+                    if (
+                        this.searchItems[this.searchVal]["type"] === "undergrad"
+                    ) {
+                        this.goToUndergardProgramme(
+                            this.searchItems[this.searchVal]["key"]
+                        );
+                        this.searchVal = null;
+                    }
+                    if (
+                        this.searchItems[this.searchVal]["type"] === "postgrad"
+                    ) {
+                        this.goToPostgradProgramme(
+                            this.searchItems[this.searchVal]["key"]
+                        );
+                        this.searchVal = null;
+                    }
+                } catch {
+                    this.test = "";
                 }
             }
         },
@@ -423,9 +433,11 @@ export default {
                                         this.undergrad[programme]["programmes"][
                                             degree
                                         ][stream][option];
-                                    items[this.undergrad[programme]["programmes"][
+                                    items[
+                                        this.undergrad[programme]["programmes"][
                                             degree
-                                        ][stream][option]] = {
+                                        ][stream][option]
+                                    ] = {
                                         key: temp.replace(/\s/g, "_"),
                                         type: "undergrad",
                                     };
@@ -494,21 +506,21 @@ export default {
             );
         }
 
-        EventBus.$on("getUP", (res) => {
-            this.undergrad = res;
-        });
-
         if (sessionStorage.postgradProgrammes) {
             this.postgrad = JSON.parse(
                 sessionStorage.getItem("postgradProgrammes")
             );
         }
+    },
+    mounted() {
+        EventBus.$on("getUP", (res) => {
+            this.undergrad = res;
+        });
 
         EventBus.$on("getPP", (res) => {
             this.postgrad = res;
         });
-    },
-    mounted() {
+
         EventBus.$on("updateDrawer", (res) => {
             this.drawer = res;
         });
@@ -522,6 +534,12 @@ export default {
             this.getModules();
             this.getSearchData();
             this.getSearchBarItems();
+            console.log("sdfsafasdf");
+            console.log("sdfsafasdf");
+            console.log(this.undergrad);
+            console.log(this.postgrad);
+            console.log("sdfsafasdf");
+            console.log("sdfsafasdf");
         });
 
         if (sessionStorage.showBar) {

@@ -55,7 +55,7 @@
                             dense
                             filled
                             attach
-                            label="Modules"
+                            label="Degrees"
                             @change="getStreams"
                         ></v-autocomplete>
                     </div>
@@ -70,7 +70,7 @@
                             dense
                             filled
                             attach
-                            label="Modules"
+                            label="Streams"
                             @change="getOptions"
                         ></v-autocomplete>
                     </div>
@@ -84,7 +84,7 @@
                             dense
                             filled
                             attach
-                            label="Modules"
+                            label="Options"
                         ></v-autocomplete>
                     </div>
                 </v-card-text>
