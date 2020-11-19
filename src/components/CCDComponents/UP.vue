@@ -34,7 +34,8 @@
                         <v-col
                             v-for="(year, key) in this.possibilities"
                             :key="year"
-                            cols="12" lg="4"
+                            cols="12"
+                            lg="4"
                         >
                             <div class="flex-line">
                                 <h2 class="ccd-year padd-left">{{ key }}</h2>
@@ -139,57 +140,50 @@
                                             >
                                             <!---->
                                             <v-expansion-panel-content>
+                                                <v-row
+                                                    no-gutters
+                                                    class="user-progess-table-header"
+                                                >
+                                                    <v-col cols="8"
+                                                        >Module</v-col
+                                                    >
+                                                    <v-col
+                                                        cols="2"
+                                                        class="user-progess-table-col"
+                                                        align="center"
+                                                        >Credits
+                                                    </v-col>
+                                                </v-row>
+                                                <v-row
+                                                    v-for="(credits,
+                                                    mod) in item"
+                                                    :key="mod"
+                                                    no-gutters
+                                                    class="user-progess-table-row"
+                                                >
+                                                    <v-col cols="8">{{
+                                                        mod
+                                                    }}</v-col>
+                                                    <v-col
+                                                        cols="2"
+                                                        class="user-progess-table-col"
+                                                        align="center"
+                                                    >
+                                                        {{ credits }}
+                                                    </v-col>
+                                                </v-row>
                                                 <div
                                                     v-for="(content,
                                                     name) in item"
                                                     :key="name"
                                                 >
                                                     <div
-                                                        style="
-                                                            padding-bottom: 2%;
-                                                        "
                                                         v-if="
-                                                            !containsTable(
+                                                            containsTable(
                                                                 content
                                                             )
                                                         "
                                                     >
-                                                        <h4>{{ name }}</h4>
-                                                        <!---->
-                                                        <v-row
-                                                            no-gutters
-                                                            class="user-progess-table-header"
-                                                        >
-                                                            <v-col cols="8"
-                                                                >Module</v-col
-                                                            >
-                                                            <v-col
-                                                                cols="2"
-                                                                class="user-progess-table-col"
-                                                                align="center"
-                                                                >Credits
-                                                            </v-col>
-                                                        </v-row>
-                                                        <v-row
-                                                            v-for="(credits,
-                                                            mod) in content"
-                                                            :key="mod"
-                                                            no-gutters
-                                                            class="user-progess-table-row"
-                                                        >
-                                                            <v-col cols="8">{{
-                                                                mod
-                                                            }}</v-col>
-                                                            <v-col
-                                                                cols="2"
-                                                                class="user-progess-table-col"
-                                                                align="center"
-                                                            >
-                                                                {{ credits }}
-                                                            </v-col>
-                                                        </v-row>
-                                                    </div>
-                                                    <div v-else>
                                                         <h4>{{ name }}</h4>
                                                         <!---->
                                                         <v-expansion-panels
