@@ -2,7 +2,9 @@
     <div class="text-center">
         <v-dialog v-model="dialog" width="80vw" persistent>
             <v-card class="programme-editor">
-                <v-card-title class="headline"> Edit programme </v-card-title>
+                <v-card-title class="headline">
+                    Add/Edit programme
+                </v-card-title>
                 <hr style="border-bottom-color: #c40b00" />
 
                 <v-container class="pa-2 pl-10 pr-10">
@@ -2579,7 +2581,7 @@ export default {
         iseCancelEdit() {
             this.dialog = false;
             this.programme = this.deepCopy(this.programme_backup);
-            this.cards = this.infoCardsOnly(this.programme);
+            this.cards = {};
         },
 
         // Methods for the undergrad course content dialogs
@@ -3317,8 +3319,16 @@ export default {
             this.typeAddProgramme = res;
             if (this.type === "undergrad") {
                 this.admission_requirements = { avg: 0, requirements: {} };
+                this.admission_requirements_backup = this.deepCopy(
+                    this.admission_requirements
+                );
+                this.requirements_only = [];
             } else {
                 this.admission_requirements = {};
+                this.admission_requirements_backup = this.deepCopy(
+                    this.admission_requirements
+                );
+                this.requirements_only = [];
             }
         });
 
