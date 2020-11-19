@@ -305,7 +305,7 @@ export default {
                 .then(res => {
                     this.temp = res;
 
-                    this.$router.replace("/");
+                    this.$router.replace("/home");
 
                     this.getModules();
                 })

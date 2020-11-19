@@ -287,7 +287,6 @@
                                     text
                                     @click="
                                         editModuleInformation = false;
-                                        module = module_backup;
                                         type = '';
                                     "
                                     >Cancel</v-btn
