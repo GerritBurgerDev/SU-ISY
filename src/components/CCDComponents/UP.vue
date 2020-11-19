@@ -323,7 +323,14 @@
                                     </v-expansion-panels>
                                 </v-item-group>
                             </div>
-                            <v-row no-gutters justify="center" v-else-if="year['credits'] === 0 && isFollowingYear(key)">
+                            <v-row
+                                no-gutters
+                                justify="center"
+                                v-else-if="
+                                    year['credits'] === 0 &&
+                                    isFollowingYear(key)
+                                "
+                            >
                                 <v-col align="center">
                                     <v-progress-circular
                                         :rotate="270"
@@ -352,7 +359,14 @@
                                     </v-progress-circular>
                                 </v-col>
                             </v-row>
-                            <v-row no-gutters justify="center" v-else-if="year['credits'] === 0 && !isFollowingYear(key)">
+                            <v-row
+                                no-gutters
+                                justify="center"
+                                v-else-if="
+                                    year['credits'] === 0 &&
+                                    !isFollowingYear(key)
+                                "
+                            >
                                 <v-col align="center">
                                     <v-progress-circular
                                         :rotate="270"
@@ -471,9 +485,9 @@ export default {
 
             return temp;
         },
-        isFollowingYear: function(year) {
+        isFollowingYear: function (year) {
             let prev = "";
-            
+
             for (const index in this.possibilities) {
                 if (index === year) {
                     break;
@@ -482,14 +496,16 @@ export default {
                 }
             }
 
-            console.log(this.possibilities);
-
-            if (this.possibilities[prev]['credits'] === 0) {
+            try {
+                if (this.possibilities[prev]["credits"] === 0) {
+                    return true;
+                }
+            } catch {
                 return true;
             }
 
             return false;
-        }
+        },
     },
 
     mounted() {
