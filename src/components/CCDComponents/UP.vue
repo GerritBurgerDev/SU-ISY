@@ -323,7 +323,7 @@
                                     </v-expansion-panels>
                                 </v-item-group>
                             </div>
-                            <v-row no-gutters justify="center" v-else>
+                            <v-row no-gutters justify="center" v-else-if="year['credits'] === 0 && isFollowingYear(key)">
                                 <v-col align="center">
                                     <v-progress-circular
                                         :rotate="270"
@@ -348,6 +348,29 @@
                                             >
                                                 Completed</span
                                             >
+                                        </div>
+                                    </v-progress-circular>
+                                </v-col>
+                            </v-row>
+                            <v-row no-gutters justify="center" v-else-if="year['credits'] === 0 && !isFollowingYear(key)">
+                                <v-col align="center">
+                                    <v-progress-circular
+                                        :rotate="270"
+                                        :size="200"
+                                        :width="10"
+                                        :value="100"
+                                        color="yellow darken-1"
+                                        class="year-completed-progress-bar"
+                                    >
+                                        <div
+                                            class="year-completed-progress-bar-content"
+                                        >
+                                            <v-icon
+                                                color="yellow darken-1"
+                                                class="year-todo-progress-bar-icon"
+                                            >
+                                                access_time
+                                            </v-icon>
                                         </div>
                                     </v-progress-circular>
                                 </v-col>
@@ -448,6 +471,23 @@ export default {
 
             return temp;
         },
+        isFollowingYear: function(year) {
+            let prev = "";
+            
+            for (const index in this.possibilities) {
+                if (index === year) {
+                    break;
+                } else {
+                    prev = index;
+                }
+            }
+
+            if (this.possibilities[prev]['credits'] === 0) {
+                return true;
+            }
+
+            return false;
+        }
     },
 
     mounted() {
@@ -502,6 +542,12 @@ export default {
     .year-completed-progress-bar-icon {
         left: 5px;
         font-size: 75px;
+        float: left;
+    }
+
+    .year-todo-progress-bar-icon {
+        top: 10px;
+        font-size: 120px;
         float: left;
     }
 
