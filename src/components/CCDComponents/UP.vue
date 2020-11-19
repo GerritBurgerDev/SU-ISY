@@ -482,6 +482,8 @@ export default {
                 }
             }
 
+            console.log(this.possibilities);
+
             if (this.possibilities[prev]['credits'] === 0) {
                 return true;
             }
