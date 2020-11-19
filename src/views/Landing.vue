@@ -46,16 +46,10 @@
                         <v-icon size="250" color="red darken-2">person</v-icon>
                         <v-card-title class="justify-center">
                             <v-btn
-                                class="white--text mr-2"
-                                color="red darken-2"
-                                @click.prevent="goToLaunch('student', false)"
-                                >Current Student</v-btn
-                            >
-                            <v-btn
                                 class="white--text ml-2"
                                 color="red darken-2"
                                 @click.prevent="goToLaunch('student', true)"
-                                >Direct Login</v-btn
+                                >Current students</v-btn
                             >
                         </v-card-title>
                     </v-card>
@@ -69,16 +63,10 @@
                         >
                         <v-card-title class="justify-center">
                             <v-btn
-                                class="white--text mr-2"
-                                color="red darken-2"
-                                @click.prevent="goToLaunch('staff', false)"
-                                >Staff Member</v-btn
-                            >
-                            <v-btn
                                 class="white--text ml-2"
                                 color="red darken-2"
                                 @click.prevent="goToLaunch('staff', true)"
-                                >Direct Login</v-btn
+                                >Staff</v-btn
                             >
                         </v-card-title>
                     </v-card>
